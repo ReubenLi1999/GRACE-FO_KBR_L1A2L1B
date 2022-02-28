@@ -43,23 +43,29 @@ program main
     ! start time for this programme
     call CPU_TIME(start_time)
 
-    date = '2018-12-01'
+    date = '2019-01-01'
     call get_environment_variable('PWD', pwd)
-    call execute_command_line('~/anaconda3/bin/python ../src/preFORfortran.py '//date)
+    !DEC$ IF DEFINED(_WIN32)
+        call execute_command_line('python ../preFORfortran.py '//date)
+    !DEC$ ELSEIF DEFINED(__linux)
+        call execute_command_line('~/anaconda3/bin/python ../src/preFORfortran.py '//date)
+    !DEC$ ELSE
+        print *, 'oops'
+    !DEC$ ENDIF
     
     ! assign some parameters
-    filenames_c = ['..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//KBR1A_'//trim(date)//'_C_04.txt', &
-                   '..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//CLK1A_'//trim(date)//'_C_05.txt', &
-                   '..//..//..//gracefo_dataset//gracefo_1B_'//trim(date)//'_RL04.ascii.noLRI//USO1B_'//trim(date)//'_C_05.txt', &
-                   '..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//PCI1A_'//trim(date)//'_C_04.txt', &
-                   '..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//PLT1A_'//trim(date)//'_Y_04.txt', &
-                   '..//..//..//gracefo_dataset//gracefo_1B_'//trim(date)//'_RL04.ascii.noLRI//GNI1B_'//trim(date)//'_C_04.txt']
-    filenames_d = ['..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//KBR1A_'//trim(date)//'_D_04.txt', &
-                   '..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//CLK1A_'//trim(date)//'_D_05.txt', &
-                   '..//..//..//gracefo_dataset//gracefo_1B_'//trim(date)//'_RL04.ascii.noLRI//USO1B_'//trim(date)//'_D_05.txt', &
-                   '..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//PCI1A_'//trim(date)//'_D_04.txt', &
-                   '..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//PLT1A_'//trim(date)//'_Y_04.txt', &
-                   '..//..//..//gracefo_dataset//gracefo_1B_'//trim(date)//'_RL04.ascii.noLRI//GNI1B_'//trim(date)//'_D_04.txt']
+    filenames_c = ['..//..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//KBR1A_'//trim(date)//'_C_04.txt', &
+                   '..//..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//CLK1A_'//trim(date)//'_C_05.txt', &
+                   '..//..//..//..//gracefo_dataset//gracefo_1B_'//trim(date)//'_RL04.ascii.noLRI//USO1B_'//trim(date)//'_C_05.txt', &
+                   '..//..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//PCI1A_'//trim(date)//'_C_04.txt', &
+                   '..//..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//PLT1A_'//trim(date)//'_Y_04.txt', &
+                   '..//..//..//..//gracefo_dataset//gracefo_1B_'//trim(date)//'_RL04.ascii.noLRI//GNI1B_'//trim(date)//'_C_04.txt']
+    filenames_d = ['..//..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//KBR1A_'//trim(date)//'_D_04.txt', &
+                   '..//..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//CLK1A_'//trim(date)//'_D_05.txt', &
+                   '..//..//..//..//gracefo_dataset//gracefo_1B_'//trim(date)//'_RL04.ascii.noLRI//USO1B_'//trim(date)//'_D_05.txt', &
+                   '..//..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//PCI1A_'//trim(date)//'_D_04.txt', &
+                   '..//..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//PLT1A_'//trim(date)//'_Y_04.txt', &
+                   '..//..//..//..//gracefo_dataset//gracefo_1B_'//trim(date)//'_RL04.ascii.noLRI//GNI1B_'//trim(date)//'_D_04.txt']
 
     nheaders = [235_ip, 0_ip, 0_ip, 84_ip, 99_ip, 148_ip]
     ! assign the flags array one by one so that the warning will not be rasied

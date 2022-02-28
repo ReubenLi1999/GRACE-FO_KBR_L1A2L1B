@@ -68,7 +68,7 @@ class IoFile(object):
         if platform.system() == 'Linux':
             self.gracefo_dataset_dir = '..//..//..//gracefo_dataset/'
         elif platform.system() == 'Windows':
-            self.gracefo_dataset_dir = 'E:/lhsProgrammes/gracefo_dataset'
+            self.gracefo_dataset_dir = 'E:/lhsPrograms/gracefo_dataset'
         suffix = '.txt'
         temp = glob.glob(self.gracefo_dataset_dir + '/**' + '/' + file_flag + '*' + id + '*' + suffix)
         temp.sort()
@@ -188,7 +188,7 @@ class IoFile(object):
         """
         output_filenames = ''
         if self.urlpaths.__len__() == 1:
-            directory = self.urlpaths[0][0: 67]
+            directory = self.urlpaths[0][0: 72]
             output_filenames = directory + flag + '_' + self.date_time_from + '_' + id + '_05.txt'
         else:
             directory = self.urlpaths[0][0: 58]
@@ -211,17 +211,17 @@ def timer(func):
 
 def star(func):
     def inner(*args, **kwargs):
-        print("*" * 88)
+        print("*" * 80)
         func(*args, **kwargs)
-        print("*" * 88)
+        print("*" * 80)
     return inner
 
 
 def percent(func):
     def inner(*args, **kwargs):
-        print("%" * 88)
+        print("%" * 80)
         func(*args, **kwargs)
-        print("%" * 88)
+        print("%" * 80)
     return inner
 
 

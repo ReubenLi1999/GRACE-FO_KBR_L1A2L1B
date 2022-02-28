@@ -235,27 +235,27 @@ contains
         
         M = 357.52910_wp + 35999.05030_wp * t - 0.0001559_wp *t**2 - 0.00000048_wp * t**3
         
-        Ci = (1.914600_wp - 0.004817_wp * t - 0.000014_wp * t**2) * sind(M) + &
-                (0.019993_wp - 0.000101_wp * t) * sind(2.0_wp * M) + 0.000290_wp * sind(3.0_wp * M)
+        Ci = (1.914600_wp - 0.004817_wp * t - 0.000014_wp * t**2) * sin(M * pi / 180.0_wp) + &
+                (0.019993_wp - 0.000101_wp * t) * sin(2.0_wp * M * pi / 180.0_wp) + 0.000290_wp * sin(3.0_wp * M * pi / 180.0_wp)
         
         THETA = L0 + Ci
         
         OMIGA = 125.04_wp - 1934.136_wp * t
-        lamda = THETA - 0.00569_wp - 0.00478_wp * sind(OMIGA)
+        lamda = THETA - 0.00569_wp - 0.00478_wp * sin(OMIGA * pi / 180.0_wp)
         
         year = floor((me%x%jdtt - jdstart) / 365.25_wp) + 2000.0_wp
         THETA2000 = lamda - 0.01397_wp * (year - 2000.0_wp)
         
-        eph = 23.439291_wp - 0.013004_wp * t - 0.00059_wp * t / 3600.0_wp + 0.001813_wp*t**3 / 3600.0_wp + 0.00256_wp * cosd(OMIGA)
+        eph = 23.439291_wp - 0.013004_wp * t - 0.00059_wp * t / 3600.0_wp + 0.001813_wp*t**3 / 3600.0_wp + 0.00256_wp * cos(OMIGA * pi / 180.0_wp)
         
-        s1 = cosd(eph) * sind(THETA2000)
-        s2 = cosd(THETA2000)
-        s3 = sind(eph)
-        s4 = sind(THETA2000)
+        s1 = cos(eph * pi / 180.0_wp) * sin(THETA2000 * pi / 180.0_wp)
+        s2 = cos(THETA2000 * pi / 180.0_wp)
+        s3 = sin(eph * pi / 180.0_wp)
+        s4 = sin(THETA2000 * pi / 180.0_wp)
         
-        me%x%right_ascension = atan2d(cosd(eph) * sind(THETA2000), cosd(THETA2000))
+        me%x%right_ascension = atan2(cos(eph * pi / 180.0_wp) * sin(THETA2000 * pi / 180.0_wp) * pi / 180.0_wp, cos(THETA2000 * pi / 180.0_wp) * pi / 180.0_wp)
         
-        me%x%negative_declination = asind(sind(eph) * sind(THETA2000))  
+        me%x%negative_declination = asin(sin(eph * pi / 180.0_wp) * sin(THETA2000 * pi / 180.0_wp) * pi / 180.0_wp)  
     end subroutine date2RADECL
 
     subroutine check_shadow(me)
@@ -266,22 +266,22 @@ contains
         real(wp)                                                :: r(3, 3, 3)
 
         ! the second rotation matrix
-        r(2, 1, 1) =  cosd(-1.0_wp * me%negative_declination)
+        r(2, 1, 1) =  cos(-1.0_wp * me%negative_declination * pi / 180.0_wp)
         r(2, 1, 2) =  0.0_wp
-        r(2, 1, 3) = -sind(-1.0_wp * me%negative_declination)
+        r(2, 1, 3) = -sin(-1.0_wp * me%negative_declination * pi / 180.0_wp)
         r(2, 2, 1) =  0.0_wp
         r(2, 2, 2) =  1.0_wp
         r(2, 2, 3) =  0.0_wp
-        r(2, 3, 1) =  sind(-1.0_wp * me%negative_declination)
+        r(2, 3, 1) =  sin(-1.0_wp * me%negative_declination * pi / 180.0_wp)
         r(2, 3, 2) =  0.0_wp
-        r(2, 3, 3) =  cosd(-1.0_wp * me%negative_declination)
+        r(2, 3, 3) =  cos(-1.0_wp * me%negative_declination * pi / 180.0_wp)
 
         ! the third rotation matrix
-        r(3, 1, 1) =  cosd(me%right_ascension)
-        r(3, 1, 2) =  sind(me%right_ascension)
+        r(3, 1, 1) =  cos(me%right_ascension * pi / 180.0_wp)
+        r(3, 1, 2) =  sin(me%right_ascension * pi / 180.0_wp)
         r(3, 1, 3) =  0.0_wp
-        r(3, 2, 1) = -sind(me%right_ascension)
-        r(3, 2, 2) =  cosd(me%right_ascension)
+        r(3, 2, 1) = -sin(me%right_ascension * pi / 180.0_wp)
+        r(3, 2, 2) =  cos(me%right_ascension * pi / 180.0_wp)
         r(3, 2, 3) =  0.0_wp
         r(3, 3, 1) =  0.0_wp
         r(3, 3, 2) =  0.0_wp
@@ -293,7 +293,6 @@ contains
         if (me%pos_n(1) < 0.0_wp) then
             if (me%pos_n(2)**2 + me%pos_n(3)**2 <= radius_earth**2) then
                 me%flag_solar_pressure = 0_ip
-                ! print *, 1
             end if
         end if
     end subroutine check_shadow
@@ -318,7 +317,7 @@ contains
 
         call self%l1bt2utct()
         call self%date2RADECL()
-        check_shadow_loop: do i= 1, size(self%x), 1
+        check_shadow_loop: do i= 1, size(self%x), 5
             call self%x(i)%check_shadow()
             if (tofile) then
                 if (self%x(i)%l1b_time > 0.0_wp) then

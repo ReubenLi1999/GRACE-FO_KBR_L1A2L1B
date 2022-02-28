@@ -27,139 +27,150 @@ def main():
     freq_rate_residual, psd_rate_residual = welch(crn_rate[:, 2], fs, ('kaiser', 30.), crn_rate[:, 0].__len__(), scaling='density')
     freq_accl_residual, psd_accl_residual = welch(crn_accl[:, 2], fs, ('kaiser', 30.), crn_accl[:, 0].__len__(), scaling='density')
 
-    freq_range_kaiser, psd_range_kaiser = welch(kaiser_range[:, 0], fs, ('kaiser', 30.), kaiser_range[:, 0].__len__(), scaling='density')
-    freq_rate_kaiser, psd_rate_kaiser = welch(kaiser_rate[:, 0], fs, ('kaiser', 30.), kaiser_rate[:, 0].__len__(), scaling='density')
-    freq_accl_kasier, psd_accl_kaiser = welch(kaiser_accl[:, 0], fs, ('kaiser', 30.), kaiser_accl[:, 0].__len__(), scaling='density')
+    freq_range_kaiser, psd_range_kaiser = welch(kaiser_range[:, 1], fs, ('kaiser', 30.), kaiser_range[:, 0].__len__(), scaling='density')
+    freq_rate_kaiser, psd_rate_kaiser = welch(kaiser_rate[:, 1], fs, ('kaiser', 30.), kaiser_rate[:, 0].__len__(), scaling='density')
+    freq_accl_kaiser, psd_accl_kaiser = welch(kaiser_accl[:, 1], fs, ('kaiser', 30.), kaiser_accl[:, 0].__len__(), scaling='density')
 
-    freq_range_kresidual, psd_range_kresidual = welch(kaiser_range[:, 1], fs, ('kaiser', 30.), kaiser_range[:, 0].__len__(), scaling='density')
-    freq_rate_kresidual, psd_rate_kresidual = welch(kaiser_rate[:, 1], fs, ('kaiser', 30.), kaiser_rate[:, 0].__len__(), scaling='density')
-    freq_accl_kresidual, psd_accl_kresidual = welch(kaiser_accl[:, 1], fs, ('kaiser', 30.), kaiser_accl[:, 0].__len__(), scaling='density')
+    freq_range_kresidual, psd_range_kresidual = welch(kaiser_range[:, 2], fs, ('kaiser', 30.), kaiser_range[:, 0].__len__(), scaling='density')
+    freq_rate_kresidual, psd_rate_kresidual = welch(kaiser_rate[:, 2], fs, ('kaiser', 30.), kaiser_rate[:, 0].__len__(), scaling='density')
+    freq_accl_kresidual, psd_accl_kresidual = welch(kaiser_accl[:, 2], fs, ('kaiser', 30.), kaiser_accl[:, 0].__len__(), scaling='density')
 
     plt.style.use(['science', 'no-latex', 'high-vis'])
     # crn range time series
     fig, ax = plt.subplots(2, 1, figsize=(20, 10))
-    ax[0].plot(crn_range[:, 1], linewidth=2, label='CAU', marker='o', color='xkcd:aqua', alpha=0.5)
-    ax[0].plot(crn_range[:, 0], linewidth=2, label='JPL')
+    ax[0].plot(np.linspace(0, 86400, crn_range.__len__()), crn_range[:, 1], linewidth=2, label='UBN', marker='o', color='xkcd:aqua', alpha=0.5)
+    ax[0].plot(np.linspace(0, 86400, crn_range.__len__()), crn_range[:, 0], linewidth=2, label='JPL')
+    ax[0].yaxis.get_offset_text().set_fontsize(24)
     ax[0].tick_params(labelsize=20, width=2.9)
     ax[0].set_xlabel('Sampling Points [5Hz]', fontsize=20)
-    ax[0].set_ylabel(r'Intersatelite range [m]', fontsize=20)
+    ax[0].set_ylabel(r'Inter-satelite range [m]', fontsize=20)
     ax[0].legend(fontsize=10, loc='best')
-    ax[0].yaxis.get_offset_text().set_fontsize(24)
     ax[0].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
-    ax[1].plot(crn_range[:, 2], linewidth=1, label='residual')
+    ax[1].plot(np.linspace(0, 86400, crn_range.__len__()),
+               crn_range[:, 2],
+               linewidth=1,
+               label='residual')
     ax[1].tick_params(labelsize=20, width=2.9)
+    ax[1].yaxis.get_offset_text().set_fontsize(24)
     ax[1].set_xlabel('Sampling Points [5Hz]', fontsize=20)
     ax[1].set_ylabel(r'Intersatelite range residual [m]', fontsize=20)
-    ax[1].yaxis.get_offset_text().set_fontsize(24)
-    ax[1].legend(fontsize=10, loc='best')
     ax[1].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
-    # fig.savefig('..//images//crn_range_time_series.png', dpi=500)
-    plt.show()
+    fig.savefig('..//images//crn_range_time_series.png', dpi=500)
 
     # crn rate time series
     fig, ax = plt.subplots(2, 1, figsize=(20, 10))
-    ax[0].plot(crn_rate[:, 1], linewidth=2, label='CAU', marker='o', color='xkcd:aqua', alpha=0.5)
-    ax[0].plot(crn_rate[:, 0], linewidth=2, label='JPL')
-    ax[0].tick_params(labelsize=15, width=2.9)
+    ax[0].plot(np.linspace(0, 86400, crn_rate.__len__()), crn_rate[:, 1], linewidth=2, label='UBN', marker='o', color='xkcd:aqua', alpha=0.5)
+    ax[0].plot(np.linspace(0, 86400, crn_rate.__len__()), crn_rate[:, 0], linewidth=2, label='JPL')
+    ax[0].tick_params(labelsize=20, width=2.9)
     ax[0].set_xlabel('Sampling Points [5Hz]', fontsize=20)
     ax[0].set_ylabel(r'Range Rate [m/s]', fontsize=20)
     ax[0].legend(fontsize=10, loc='best')
     ax[0].yaxis.get_offset_text().set_fontsize(24)
     ax[0].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
-    ax[1].plot(crn_rate[:, 2], linewidth=1, label='residual')
+    ax[1].plot(np.linspace(0, 86400, crn_rate.__len__()),
+               crn_rate[:, 2],
+               linewidth=1,
+               label='residual')
     ax[1].tick_params(labelsize=20, width=2.9)
     ax[1].set_xlabel('Sampling Points [5Hz]', fontsize=20)
     ax[1].set_ylabel(r'Range rate residual [m/s]', fontsize=20)
     ax[1].yaxis.get_offset_text().set_fontsize(24)
-    ax[1].legend(fontsize=10, loc='best')
     ax[1].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
-    # fig.savefig('..//images//crn_rate_time_series.png', dpi=500)
+    fig.savefig('..//images//crn_rate_time_series.png', dpi=500)
 
     # crn accl time series
-    fig, ax = plt.subplots(2, 1, figsize=(20, 10))
-    ax[0].plot(crn_accl[:, 1], linewidth=2, label='CAU', marker='o', color='xkcd:aqua', alpha=0.5)
-    ax[0].plot(crn_accl[:, 0], linewidth=2, label='JPL')
-    ax[0].tick_params(labelsize=15, width=2.9)
+    fig, ax = plt.subplots(2, 1, figsize=(50, 25))
+    ax[0].plot(np.linspace(0, 86400, crn_accl.__len__()), crn_accl[:, 1], linewidth=2, label='UBN', marker='o', color='xkcd:aqua', alpha=0.5)
+    ax[0].plot(np.linspace(0, 86400, crn_accl.__len__()), crn_accl[:, 0], linewidth=2, label='JPL')
+    ax[0].tick_params(labelsize=20, width=2.9)
     ax[0].set_xlabel('Sampling Points [5Hz]', fontsize=20)
     ax[0].set_ylabel(r'Range accelaration [m/s]', fontsize=20)
     ax[0].legend(fontsize=10, loc='best')
     ax[0].yaxis.get_offset_text().set_fontsize(24)
     ax[0].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
-    ax[1].plot(crn_accl[:, 2], linewidth=1, label='residual')
+    ax[1].plot(np.linspace(0, 86400, crn_accl.__len__()),
+               crn_accl[:, 2],
+               linewidth=1,
+               label='residual')
     ax[1].tick_params(labelsize=20, width=2.9)
     ax[1].set_xlabel('Sampling Points [5Hz]', fontsize=20)
     ax[1].set_ylabel(r'Range accelaration residual [m/s]', fontsize=20)
     ax[1].yaxis.get_offset_text().set_fontsize(24)
-    ax[1].legend(fontsize=10, loc='best')
     ax[1].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
-    # fig.savefig('..//images//crn_accl_time_series.png', dpi=500)
+    fig.savefig('..//images//crn_accl_time_series.png', dpi=500)
 
     # kaiser range time series
-    fig, ax = plt.subplots(2, 1, figsize=(20, 10))
-    ax[0].plot(kaiser_range[:, 1], linewidth=2, label='CAU', marker='o', color='xkcd:lavender', alpha=0.5)
-    ax[0].plot(kaiser_range[:, 0], linewidth=2, label='JPL')
+    fig, ax = plt.subplots(2, 1, figsize=(50, 25))
+    ax[0].plot(np.linspace(0, 86400, kaiser_range.__len__()), kaiser_range[:, 1], linewidth=2, label='UBN', marker='o', color='xkcd:lavender', alpha=0.5)
+    ax[0].plot(np.linspace(0, 86400, kaiser_range.__len__()), kaiser_range[:, 0], linewidth=2, label='JPL')
     ax[0].tick_params(labelsize=20, width=2.9)
     ax[0].set_xlabel('Sampling Points [5Hz]', fontsize=20)
     ax[0].set_ylabel(r'Intersatelite range [m]', fontsize=20)
     ax[0].legend(fontsize=10, loc='best')
     ax[0].yaxis.get_offset_text().set_fontsize(24)
     ax[0].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
-    ax[1].plot(kaiser_range[:, 2], linewidth=1, label='residual')
+    ax[1].plot(np.linspace(0, 86400, kaiser_range.__len__()),
+               kaiser_range[:, 2],
+               linewidth=1,
+               label='residual')
     ax[1].tick_params(labelsize=20, width=2.9)
     ax[1].set_xlabel('Sampling Points [5Hz]', fontsize=20)
     ax[1].set_ylabel(r'Intersatelite range residual [m]', fontsize=20)
     ax[1].yaxis.get_offset_text().set_fontsize(24)
-    ax[1].legend(fontsize=10, loc='best')
     ax[1].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
-    # fig.savefig('..//images//kaiser_range_time_series.png', dpi=500)
+    fig.savefig('..//images//kaiser_range_time_series.png', dpi=500)
 
     # kaiser rate time series
-    fig, ax = plt.subplots(2, 1, figsize=(20, 10))
-    ax[0].plot(kaiser_rate[:, 1], linewidth=2, label='CAU', marker='o', color='xkcd:lavender', alpha=0.5)
-    ax[0].plot(kaiser_rate[:, 0], linewidth=2, label='JPL')
-    ax[0].tick_params(labelsize=15, width=2.9)
+    fig, ax = plt.subplots(2, 1, figsize=(50, 25))
+    ax[0].plot(np.linspace(0, 86400, kaiser_rate.__len__()), kaiser_rate[:, 1], linewidth=2, label='UBN', marker='o', color='xkcd:lavender', alpha=0.5)
+    ax[0].plot(np.linspace(0, 86400, kaiser_rate.__len__()), kaiser_rate[:, 0], linewidth=2, label='JPL')
+    ax[0].tick_params(labelsize=20, width=2.9)
     ax[0].set_xlabel('Sampling Points [5Hz]', fontsize=20)
     ax[0].set_ylabel(r'Range Rate [m/s]', fontsize=20)
     ax[0].legend(fontsize=10, loc='best')
     ax[0].yaxis.get_offset_text().set_fontsize(24)
     ax[0].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
-    ax[1].plot(kaiser_rate[:, 2], linewidth=1, label='residual')
+    ax[1].plot(np.linspace(0, 86400, kaiser_rate.__len__()),
+               kaiser_rate[:, 2],
+               linewidth=1,
+               label='residual')
     ax[1].tick_params(labelsize=20, width=2.9)
     ax[1].set_xlabel('Sampling Points [5Hz]', fontsize=20)
     ax[1].set_ylabel(r'Range rate residual [m/s]', fontsize=20)
     ax[1].yaxis.get_offset_text().set_fontsize(24)
-    ax[1].legend(fontsize=10, loc='best')
     ax[1].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
-    # fig.savefig('..//images//kaiser_rate_time_series.png', dpi=500)
+    fig.savefig('..//images//kaiser_rate_time_series.png', dpi=500)
 
     # kaiser accl time series
-    fig, ax = plt.subplots(2, 1, figsize=(20, 10))
-    ax[0].plot(kaiser_accl[:, 1], linewidth=2, label='CAU', marker='o', color='xkcd:lavender', alpha=0.5)
-    ax[0].plot(kaiser_accl[:, 0], linewidth=2, label='JPL')
-    ax[0].tick_params(labelsize=15, width=2.9)
+    fig, ax = plt.subplots(2, 1, figsize=(50, 25))
+    ax[0].plot(np.linspace(0, 86400, kaiser_accl.__len__()), kaiser_accl[:, 1], linewidth=2, label='UBN', marker='o', color='xkcd:lavender', alpha=0.5)
+    ax[0].plot(np.linspace(0, 86400, kaiser_accl.__len__()), kaiser_accl[:, 0], linewidth=2, label='JPL')
+    ax[0].tick_params(labelsize=20, width=2.9)
     ax[0].set_xlabel('Sampling Points [5Hz]', fontsize=20)
     ax[0].set_ylabel(r'Range accelaration [m/s]', fontsize=20)
     ax[0].legend(fontsize=10, loc='best')
     ax[0].yaxis.get_offset_text().set_fontsize(24)
     ax[0].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
-    ax[1].plot(kaiser_accl[:, 2], linewidth=1, label='residual')
+    ax[1].plot(np.linspace(0, 86400, kaiser_accl.__len__()),
+               kaiser_accl[:, 2],
+               linewidth=1,)
     ax[1].tick_params(labelsize=20, width=2.9)
     ax[1].set_xlabel('Sampling Points [5Hz]', fontsize=20)
     ax[1].set_ylabel(r'Range accelaration residual [m/s]', fontsize=20)
     ax[1].yaxis.get_offset_text().set_fontsize(24)
-    ax[1].legend(fontsize=10, loc='best')
     ax[1].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
-    # fig.savefig('..//images//kaiser_accl_time_series.png', dpi=500)
+    fig.savefig('..//images//kaiser_accl_time_series.png', dpi=500)
     # plt.gca().spines['left'].set_linewidth(2)
     # plt.gca().spines['top'].set_linewidth(2)
     # plt.gca().spines['right'].set_linewidth(2)
     # plt.gca().spines['bottom'].set_linewidth(2)
+    # plt.show()
 
     plt.style.use(['science', 'no-latex', 'high-vis'])
     fig, ax = plt.subplots(figsize=(20, 10))
     plt.loglog(freq_range_jpl, np.sqrt(psd_range_jpl), linewidth=2, label=r'$KBR1B-crn-JPL$')
-    plt.loglog(freq_range_cau, np.sqrt(psd_range_cau), linewidth=2, label=r'$KBR1A-crn-CAU$')
-    plt.loglog(freq_range_residual, np.sqrt(psd_range_residual), linewidth=2, label=r'$KBR1B-crn-residual$')
+    plt.loglog(freq_range_cau, np.sqrt(psd_range_cau), linewidth=2, label=r'$KBR1B-crn-UBN$')
+    plt.loglog(freq_range_residual, np.sqrt(psd_range_residual), linewidth=2, label=r'$residual$')
     plt.tick_params(labelsize=25, width=2.9)
     plt.xlabel('Frequency [Hz]', fontsize=20)
     ax.yaxis.get_offset_text().set_fontsize(24)
@@ -170,12 +181,12 @@ def main():
     plt.gca().spines['top'].set_linewidth(2)
     plt.gca().spines['right'].set_linewidth(2)
     plt.gca().spines['bottom'].set_linewidth(2)
-    # fig.savefig('..//images//crn_range_psd.png', dpi=500)
+    fig.savefig('..//images//crn_range_psd.png', dpi=500)
 
     fig, ax = plt.subplots(figsize=(20, 10))
     plt.loglog(freq_rate_jpl, np.sqrt(psd_rate_jpl), linewidth=2, label=r'$KBR1B-crn-JPL$')
-    plt.loglog(freq_rate_cau, np.sqrt(psd_rate_cau), linewidth=2, label=r'$KBR1A-crn-CAU$')
-    plt.loglog(freq_rate_residual, np.sqrt(psd_rate_residual), linewidth=2, label=r'$KBR1B-crn-residual$')
+    plt.loglog(freq_rate_cau, np.sqrt(psd_rate_cau), linewidth=2, label=r'$KBR1B-crn-UBN$')
+    plt.loglog(freq_rate_residual, np.sqrt(psd_rate_residual), linewidth=2, label=r'$residual$')
     plt.tick_params(labelsize=25, width=2.9)
     plt.xlabel('Frequency [Hz]', fontsize=20)
     ax.yaxis.get_offset_text().set_fontsize(24)
@@ -186,12 +197,12 @@ def main():
     plt.gca().spines['top'].set_linewidth(2)
     plt.gca().spines['right'].set_linewidth(2)
     plt.gca().spines['bottom'].set_linewidth(2)
-    # fig.savefig('..//images//crn_rate_psd.png', dpi=500)
+    fig.savefig('..//images//crn_rate_psd.png', dpi=500)
 
     fig, ax = plt.subplots(figsize=(20, 10))
     plt.loglog(freq_accl_jpl, np.sqrt(psd_accl_jpl), linewidth=2, label=r'$KBR1B-crn-JPL$')
-    plt.loglog(freq_accl_cau, np.sqrt(psd_accl_cau), linewidth=2, label=r'$KBR1A-crn-CAU$')
-    plt.loglog(freq_accl_residual, np.sqrt(psd_accl_residual), linewidth=2, label=r'$KBR1B-crn-residual$')
+    plt.loglog(freq_accl_cau, np.sqrt(psd_accl_cau), linewidth=2, label=r'$KBR1B-crn-UBN$')
+    plt.loglog(freq_accl_residual, np.sqrt(psd_accl_residual), linewidth=2, label=r'$residual$')
     plt.tick_params(labelsize=25, width=2.9)
     plt.xlabel('Frequency [Hz]', fontsize=20)
     ax.yaxis.get_offset_text().set_fontsize(24)
@@ -202,7 +213,85 @@ def main():
     plt.gca().spines['top'].set_linewidth(2)
     plt.gca().spines['right'].set_linewidth(2)
     plt.gca().spines['bottom'].set_linewidth(2)
-    # fig.savefig('..//images//crn_accl_psd.png', dpi=500)
+    fig.savefig('..//images//crn_accl_psd.png', dpi=500)
+
+    plt.style.use(['science', 'no-latex', 'high-vis'])
+    fig, ax = plt.subplots(figsize=(20, 10))
+    plt.loglog(freq_range_jpl,
+               np.sqrt(psd_range_jpl),
+               linewidth=2,
+               label=r'$KBR1B-crn-JPL$')
+    plt.loglog(freq_range_kaiser,
+               np.sqrt(psd_range_kaiser),
+               linewidth=2,
+               label=r'$KBR1B-Kaiser-UBN$')
+    plt.loglog(freq_range_kresidual,
+               np.sqrt(psd_range_kresidual),
+               linewidth=2,
+               label=r'$residual$')
+    plt.tick_params(labelsize=25, width=2.9)
+    plt.xlabel('Frequency [Hz]', fontsize=20)
+    ax.yaxis.get_offset_text().set_fontsize(24)
+    plt.ylabel(r'$Range \, \, ASD [m/\sqrt{Hz}]$', fontsize=20)
+    plt.legend(fontsize=20, loc='best')
+    plt.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
+    plt.gca().spines['left'].set_linewidth(2)
+    plt.gca().spines['top'].set_linewidth(2)
+    plt.gca().spines['right'].set_linewidth(2)
+    plt.gca().spines['bottom'].set_linewidth(2)
+    fig.savefig('..//images//kaiser_range_psd.png', dpi=500)
+
+    fig, ax = plt.subplots(figsize=(20, 10))
+    plt.loglog(freq_rate_jpl,
+               np.sqrt(psd_rate_jpl),
+               linewidth=2,
+               label=r'$KBR1B-crn-JPL$')
+    plt.loglog(freq_rate_kaiser,
+               np.sqrt(psd_rate_kaiser),
+               linewidth=2,
+               label=r'$KBR1B-kaiser-UBN$')
+    plt.loglog(freq_rate_kresidual,
+               np.sqrt(psd_rate_kresidual),
+               linewidth=2,
+               label=r'$residual$')
+    plt.tick_params(labelsize=25, width=2.9)
+    plt.xlabel('Frequency [Hz]', fontsize=20)
+    ax.yaxis.get_offset_text().set_fontsize(24)
+    plt.ylabel(r'$Range Rate \, \, ASD [m/s/\sqrt{Hz}]$', fontsize=20)
+    plt.legend(fontsize=20, loc='best')
+    plt.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
+    plt.gca().spines['left'].set_linewidth(2)
+    plt.gca().spines['top'].set_linewidth(2)
+    plt.gca().spines['right'].set_linewidth(2)
+    plt.gca().spines['bottom'].set_linewidth(2)
+    fig.savefig('..//images//kaiser_rate_psd.png', dpi=500)
+
+    fig, ax = plt.subplots(figsize=(20, 10))
+    plt.loglog(freq_accl_jpl,
+               np.sqrt(psd_accl_jpl),
+               linewidth=2,
+               label=r'$KBR1B-crn-JPL$')
+    plt.loglog(freq_accl_kaiser,
+               np.sqrt(psd_accl_kaiser),
+               linewidth=2,
+               label=r'$KBR1B-kaiser-UBN$')
+    plt.loglog(freq_accl_kresidual,
+               np.sqrt(psd_accl_kresidual),
+               linewidth=2,
+               label=r'$residual$')
+    plt.tick_params(labelsize=25, width=2.9)
+    plt.xlabel('Frequency [Hz]', fontsize=20)
+    ax.yaxis.get_offset_text().set_fontsize(24)
+    plt.ylabel(r'$Range Accelaration \, \, ASD [m/s^2/\sqrt{Hz}]$',
+               fontsize=20)
+    plt.legend(fontsize=20, loc='best')
+    plt.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
+    plt.gca().spines['left'].set_linewidth(2)
+    plt.gca().spines['top'].set_linewidth(2)
+    plt.gca().spines['right'].set_linewidth(2)
+    plt.gca().spines['bottom'].set_linewidth(2)
+    fig.savefig('..//images//kaiser_accl_psd.png', dpi=500)
+    plt.show()
 
 
 def tof():
@@ -218,19 +307,37 @@ def tof():
 
     tof_range_1b = dd_KBR1B.lighttime_corr.compute().to_numpy()
     print(tof[460], tof_range_1b[92])
-    plt.style.use(['science', 'no-latex', 'high-vis'])
-    fig, ax = plt.subplots(figsize=(20, 10))
-    plt.plot(tof[460: 80460: 5] - tof_range_1b[92: 16092])
-    plt.xlabel('Sampling point', fontsize=20)
-    ax.yaxis.get_offset_text().set_fontsize(24)
-    plt.ylabel(r'$Residual \,\, of \,\, TOF [m]$', fontsize=20)
-    plt.legend(fontsize=20, loc='best')
-    plt.tick_params(labelsize=25, width=2.9)
-    plt.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
-    plt.gca().spines['left'].set_linewidth(2)
-    plt.gca().spines['top'].set_linewidth(2)
-    plt.gca().spines['right'].set_linewidth(2)
-    plt.gca().spines['bottom'].set_linewidth(2)
+    # plt.style.use(['science', 'no-latex', 'high-vis'])
+    fig, ax = plt.subplots(2, 1, figsize=(50, 25))
+    ax[0].plot(np.linspace(0, 86400, tof[460: 80460: 5].__len__()),
+               tof[460: 80460: 5],
+               linewidth=2,
+               label='UBN',
+               marker='o',
+               color='lawngreen',
+               alpha=0.5)
+    ax[0].plot(np.linspace(0, 86400, tof[460:80460:5].__len__()),
+               tof_range_1b[92: 16092],
+               linewidth=2,
+               label='JPL',
+               color='red')
+    ax[0].tick_params(labelsize=20, width=2.9)
+    ax[0].set_xlabel(u'自2019年1月1日00:00:00开始GPS时间 [s]', fontsize=20)
+    ax[0].set_ylabel(u'飞行时间改正 [m]', fontsize=20)
+    ax[0].legend(fontsize=10, loc='best', frameon=False)
+    ax[0].yaxis.get_offset_text().set_fontsize(24)
+    ax[0].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
+    ax[1].plot(np.linspace(0, 86400, tof[460: 80460: 5].__len__()), tof[460: 80460: 5] - tof_range_1b[92: 16092])
+    ax[1].set_xlabel(u'自2019年1月1日00:00:00开始GPS时间 [s]', fontsize=20)
+    ax[1].yaxis.get_offset_text().set_fontsize(24)
+    ax[1].set_ylabel(u'飞行时间改正残差 [m]', fontsize=20)
+    # plt.legend(fontsize=20, loc='best')
+    ax[1].tick_params(labelsize=25, width=2.9)
+    ax[1].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
+    # axis thicken
+    for index, _ in enumerate(ax):
+        for axis in ['top', 'bottom', 'left', 'right']:
+            ax[index].spines[axis].set_linewidth(2)
     plt.show()
 
 
@@ -265,7 +372,7 @@ def kaiser_compare():
     freq_kaiser, psd_kaiser = welch(ay_KBR1B_kaiser[1000: 860000, 0], 10.0, ('kaiser', 30.), ay_KBR1B_kaiser[1000: 860000, 0].__len__(), scaling='density')
 
     plt.style.use(['science', 'no-latex'])
-    fig, ax = plt.subplots(figsize=(20, 10))
+    fig, ax = plt.subplots(figsize=(50, 25))
     ax.loglog(freq_1a, np.sqrt(psd_1a), linewidth=2, label=r'$KBR1A$')
     ax.loglog(freq_kaiser, np.sqrt(psd_kaiser), linewidth=2, label=r'$KBR1B-kaiser-10Hz$')
     ax.loglog(freq_crn, np.sqrt(psd_crn), linewidth=2, label=r'$KBR1B-JPL-0.2Hz$')
