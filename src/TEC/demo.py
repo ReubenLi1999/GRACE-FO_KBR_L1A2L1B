@@ -1,9 +1,8 @@
 import numpy as np
-import modin.pandas as pd
+import pandas as pd
 import plotly.graph_objects as go
 import time
 import matplotlib.pyplot as plt
-from distributed import Client
 from datetime import datetime, timedelta
 from glob import glob
 from os import path
@@ -16,10 +15,6 @@ import cartopy.feature as cfeature
 import matplotlib.tri as tri
 import plotly.graph_objects as go
 from scipy.signal import welch, kaiserord, firwin, filtfilt
-from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
 from scipy.fft import fft, fftfreq
 from pyquaternion import Quaternion
 from plotly.subplots import make_subplots
@@ -128,9 +123,9 @@ def map_cntr(lat, lon, data, lat_min=-90., lat_max=90., lon_min=-180., lon_max=1
 
 
 def main():
-    client = Client()
-    start_date = '2019-07-01'
-    end_date = '2019-07-01'
+    # client = Client()
+    start_date = '2019-01-01'
+    end_date = '2019-01-07'
 
     files_20181201220181204 = file_product4specific_days(
         start_date, end_date, ['KBR1B', 'GNV1B'], r'..//..//..//..//gracefo_dataset', r"gracefo_1B_%Y-%m-%d_RL04.ascii.noLRI")
@@ -178,7 +173,7 @@ def main():
     kbr1b_x["iono_corr_hf"] = kbr1b_x['iono_corr'].to_numpy(
     ) - kaiser(kbr1b_x['iono_corr'].to_numpy(), 0.1, 0.035)
     kbr1b_x["iono_corr_hf_abs"] = np.abs(kbr1b_x.iono_corr_hf.to_numpy())
-    
+
     kbr1b_x = kbr1b_x[kbr1b_x.iono_corr_hf_abs > np.std(kbr1b_x.iono_corr_hf.to_numpy() * 2)]
 
     fig = plt.figure(figsize=(10,8))
@@ -189,13 +184,9 @@ def main():
 
     ax.add_feature(cfeature.COASTLINE)
     ax.add_feature(cfeature.BORDERS)
-    ax.gridlines()
-    # ax.set_xticks([0, 60, 120, 180, 240, 300, 360], crs=crs.PlateCarree())
-    # ax.set_yticks([-90, -60, -30, 0, 30, 60, 90], crs=crs.PlateCarree())
-    # lon_formatter = LongitudeFormatter(zero_direction_label=True)
-    # lat_formatter = LatitudeFormatter()
-    # ax.xaxis.set_major_formatter(lon_formatter)
-    # ax.yaxis.set_major_formatter(lat_formatter)
+    gl = ax.gridlines(draw_labels=True, linewidth=2, linestyle="--")
+    gl.xlabel_style = {'size': "20"}
+    gl.ylabel_style = {'size': "20"}
 
     plt.scatter(x=kbr1b_x.lon, y=kbr1b_x.lat,
                 c=kbr1b_x.iono_corr_hf,

@@ -30,11 +30,11 @@ def iono_corr():
     # iono_corr = np.loadtxt(fname='..//output//IONO1A_2018-12-31_Y_03.txt',
     #                        dtype=np.longdouble,
     #                        skiprows=1)
-    # dd_range = np.loadtxt(
-    #     '..//..//..//gracefo_dataset//gracefo_1A_2018-12-31_RL04.ascii.noLRI//DDR1A_2018-12-31_Y_04.txt',
-    #     dtype=np.longdouble,
-    #     skiprows=1,
-    #     max_rows=863998)
+    dd_range = np.loadtxt(
+        '..//..//..//gracefo_dataset//gracefo_1A_2018-12-01_RL04.ascii.noLRI//DDR1A_2018-12-01_Y_04.txt',
+        dtype=np.longdouble,
+        skiprows=1,
+        max_rows=863998)
     # dowr_k = np.loadtxt(
     #     fname='..//..//..//gracefo_dataset//gracefo_1A_2018-12-31_RL04.ascii.noLRI//DOWR1A_2018-12-31_Y_04.txt',
     #     usecols=1,
@@ -170,10 +170,10 @@ def iono_corr():
     #                             10., ('kaiser', 30.),
     #                             iono_corr.__len__(),
     #                             scaling='density')
-    # freq_ddra, psd_ddra = welch(dd_range,
-    #                             10., ('kaiser', 30.),
-    #                             iono_corr.__len__(),
-    #                             scaling='density')
+    freq_ddra, psd_ddra = welch(dd_range,
+                                10., ('kaiser', 30.),
+                                dd_range.__len__(),
+                                scaling='density')
     # freq_k1ac, psd_k1ac = welch(dd_range,
     #                             10., ('kaiser', 30.),
     #                             dd_kbr1a_c.__len__(),
@@ -183,85 +183,85 @@ def iono_corr():
     # norm
     # mu, std = norm.fit(iono_corr_hf)
 
-    plt.style.use(['science', 'no-latex', 'high-vis'])
-    fig, ax = plt.subplots(figsize=(50, 25))
-    time_span = np.linspace(0, 86400, iono_corr_hf.__len__())
-    ax.plot(time_span, iono_corr_hf, linewidth=1)
-    # ax.scatter(time_span[outlier_index], iono_corr_hf[outlier_index], color='red')
-    # ax.fill_between(shadow_c[:, 0] - shadow_c[0, 0], 0, 1, where=shadow_c[:, 1] == 0,
-    #                 color='grey', alpha=0.5, transform=ax.get_xaxis_transform())
-    # ax.fill_between(shadow_d[:, 0] - shadow_d[0, 0], 0, 1, where=shadow_d[:, 1] == 0,
-    #                 color='grey', alpha=0.5, transform=ax.get_xaxis_transform())
-    ax.set_ylim([-1.5e15, 2e15])
-    ax.set_xlim([500, 85500])
-    ax.ticklabel_format(style='sci', axis='y', scilimits=(-5, 2))
-    ax.set_xlabel(u"自2019年5月1日00:00:00开始GPS时 [s]", fontsize=20, fontproperties=fontP)
-    ax.set_ylabel(r'0.04-0.08 Hz频段的水平电子总数 [TECU]', fontsize=20, fontproperties=fontP)
-    ax.yaxis.get_offset_text().set_fontsize(24)
-    ax.spines['top'].set_linewidth(2)
-    ax.spines['bottom'].set_linewidth(2)
-    ax.spines['left'].set_linewidth(2)
-    ax.spines['right'].set_linewidth(2)
-    # ax.legend(fontsize=20, loc='best', frameon=False)
-    ax.tick_params(labelsize=25, width=2.9)
-
-    axins1 = ax.inset_axes((0.55, 0.75, 0.2, 0.2))
-    axins1.tick_params(labelsize=15, width=1)
-    axins1.yaxis.get_offset_text().set_fontsize(14)
-    axins1.spines['top'].set_linewidth(2)
-    axins1.spines['bottom'].set_linewidth(2)
-    axins1.spines['left'].set_linewidth(2)
-    axins1.spines['right'].set_linewidth(2)
-    zone_left = 14876
-    zone_right = 14975
-    x_ratio = 0  # x轴显示范围的扩展比例
-    y_ratio = 0.05  # y轴显示范围的扩展比例
-    xlim0 = time_span[zone_left] - (time_span[zone_right] - time_span[zone_left]) * x_ratio
-    xlim1 = time_span[zone_right] + (time_span[zone_right] - time_span[zone_left]) * x_ratio
-    y = np.hstack((iono_corr_hf[zone_left: zone_right]))
-    ylim0 = np.min(y) - (np.max(y) - np.min(y)) * y_ratio
-    ylim1 = np.max(y) + (np.max(y) - np.min(y)) * y_ratio
-    axins1.set_xlim(xlim0, xlim1)
-    axins1.set_ylim(ylim0, ylim1)
-    tx0 = xlim0
-    tx1 = xlim1
-    ty0 = ylim0
-    ty1 = ylim1
-    sx = [tx0,tx1,tx1,tx0,tx0]
-    sy = [ty0,ty0,ty1,ty1,ty0]
-    ax.plot(sx,sy,"black")
-    mark_inset(ax, axins1, loc1=3, loc2=1, fc="none", ec='k', lw=1)
-    axins1.plot(time_span[zone_left: zone_right], iono_corr_hf[zone_left: zone_right])
-
-    axins2 = ax.inset_axes((0.25, 0.75, 0.2, 0.2))
-    axins2.tick_params(labelsize=15, width=1)
-    axins2.yaxis.get_offset_text().set_fontsize(14)
-    axins2.spines['top'].set_linewidth(2)
-    axins2.spines['bottom'].set_linewidth(2)
-    axins2.spines['left'].set_linewidth(2)
-    axins2.spines['right'].set_linewidth(2)
-    zone_left = 7000
-    zone_right = 7250
-    x_ratio = 0  # x轴显示范围的扩展比例
-    y_ratio = 0.05  # y轴显示范围的扩展比例
-    xlim0 = time_span[zone_left] - (time_span[zone_right] - time_span[zone_left]) * x_ratio
-    xlim1 = time_span[zone_right] + (time_span[zone_right] - time_span[zone_left]) * x_ratio
-    y = np.hstack((iono_corr_hf[zone_left: zone_right]))
-    ylim0 = np.min(y) - (np.max(y) - np.min(y)) * y_ratio
-    ylim1 = np.max(y) + (np.max(y) - np.min(y)) * y_ratio
-    axins2.set_xlim(xlim0, xlim1)
-    axins2.set_ylim(ylim0, ylim1)
-    tx0 = xlim0
-    tx1 = xlim1
-    ty0 = ylim0
-    ty1 = ylim1
-    sx = [tx0,tx1,tx1,tx0,tx0]
-    sy = [ty0,ty0,ty1,ty1,ty0]
-    ax.plot(sx,sy,"black")
-    mark_inset(ax, axins2, loc1=3, loc2=4, fc="none", ec='k', lw=1)
-    axins2.plot(time_span[zone_left: zone_right], iono_corr_hf[zone_left: zone_right])
-
-    plt.show()
+    # plt.style.use(['science', 'no-latex', 'high-vis'])
+    # fig, ax = plt.subplots(figsize=(50, 25))
+    # time_span = np.linspace(0, 86400, iono_corr_hf.__len__())
+    # ax.plot(time_span, iono_corr_hf, linewidth=1)
+    # # ax.scatter(time_span[outlier_index], iono_corr_hf[outlier_index], color='red')
+    # # ax.fill_between(shadow_c[:, 0] - shadow_c[0, 0], 0, 1, where=shadow_c[:, 1] == 0,
+    # #                 color='grey', alpha=0.5, transform=ax.get_xaxis_transform())
+    # # ax.fill_between(shadow_d[:, 0] - shadow_d[0, 0], 0, 1, where=shadow_d[:, 1] == 0,
+    # #                 color='grey', alpha=0.5, transform=ax.get_xaxis_transform())
+    # ax.set_ylim([-1.5e15, 2e15])
+    # ax.set_xlim([500, 85500])
+    # ax.ticklabel_format(style='sci', axis='y', scilimits=(-5, 2))
+    # ax.set_xlabel(u"自2019年5月1日00:00:00开始GPS时 [s]", fontsize=20, fontproperties=fontP)
+    # ax.set_ylabel(r'0.04-0.08 Hz频段的水平电子总数 [TECU]', fontsize=20, fontproperties=fontP)
+    # ax.yaxis.get_offset_text().set_fontsize(24)
+    # ax.spines['top'].set_linewidth(2)
+    # ax.spines['bottom'].set_linewidth(2)
+    # ax.spines['left'].set_linewidth(2)
+    # ax.spines['right'].set_linewidth(2)
+    # # ax.legend(fontsize=20, loc='best', frameon=False)
+    # ax.tick_params(labelsize=25, width=2.9)
+# 
+    # axins1 = ax.inset_axes((0.55, 0.75, 0.2, 0.2))
+    # axins1.tick_params(labelsize=15, width=1)
+    # axins1.yaxis.get_offset_text().set_fontsize(14)
+    # axins1.spines['top'].set_linewidth(2)
+    # axins1.spines['bottom'].set_linewidth(2)
+    # axins1.spines['left'].set_linewidth(2)
+    # axins1.spines['right'].set_linewidth(2)
+    # zone_left = 14876
+    # zone_right = 14975
+    # x_ratio = 0  # x轴显示范围的扩展比例
+    # y_ratio = 0.05  # y轴显示范围的扩展比例
+    # xlim0 = time_span[zone_left] - (time_span[zone_right] - time_span[zone_left]) * x_ratio
+    # xlim1 = time_span[zone_right] + (time_span[zone_right] - time_span[zone_left]) * x_ratio
+    # y = np.hstack((iono_corr_hf[zone_left: zone_right]))
+    # ylim0 = np.min(y) - (np.max(y) - np.min(y)) * y_ratio
+    # ylim1 = np.max(y) + (np.max(y) - np.min(y)) * y_ratio
+    # axins1.set_xlim(xlim0, xlim1)
+    # axins1.set_ylim(ylim0, ylim1)
+    # tx0 = xlim0
+    # tx1 = xlim1
+    # ty0 = ylim0
+    # ty1 = ylim1
+    # sx = [tx0,tx1,tx1,tx0,tx0]
+    # sy = [ty0,ty0,ty1,ty1,ty0]
+    # ax.plot(sx,sy,"black")
+    # mark_inset(ax, axins1, loc1=3, loc2=1, fc="none", ec='k', lw=1)
+    # axins1.plot(time_span[zone_left: zone_right], iono_corr_hf[zone_left: zone_right])
+# 
+    # axins2 = ax.inset_axes((0.25, 0.75, 0.2, 0.2))
+    # axins2.tick_params(labelsize=15, width=1)
+    # axins2.yaxis.get_offset_text().set_fontsize(14)
+    # axins2.spines['top'].set_linewidth(2)
+    # axins2.spines['bottom'].set_linewidth(2)
+    # axins2.spines['left'].set_linewidth(2)
+    # axins2.spines['right'].set_linewidth(2)
+    # zone_left = 7000
+    # zone_right = 7250
+    # x_ratio = 0  # x轴显示范围的扩展比例
+    # y_ratio = 0.05  # y轴显示范围的扩展比例
+    # xlim0 = time_span[zone_left] - (time_span[zone_right] - time_span[zone_left]) * x_ratio
+    # xlim1 = time_span[zone_right] + (time_span[zone_right] - time_span[zone_left]) * x_ratio
+    # y = np.hstack((iono_corr_hf[zone_left: zone_right]))
+    # ylim0 = np.min(y) - (np.max(y) - np.min(y)) * y_ratio
+    # ylim1 = np.max(y) + (np.max(y) - np.min(y)) * y_ratio
+    # axins2.set_xlim(xlim0, xlim1)
+    # axins2.set_ylim(ylim0, ylim1)
+    # tx0 = xlim0
+    # tx1 = xlim1
+    # ty0 = ylim0
+    # ty1 = ylim1
+    # sx = [tx0,tx1,tx1,tx0,tx0]
+    # sy = [ty0,ty0,ty1,ty1,ty0]
+    # ax.plot(sx,sy,"black")
+    # mark_inset(ax, axins2, loc1=3, loc2=4, fc="none", ec='k', lw=1)
+    # axins2.plot(time_span[zone_left: zone_right], iono_corr_hf[zone_left: zone_right])
+# 
+    # plt.show()
 
 
 
@@ -405,18 +405,19 @@ def iono_corr():
     # ax.tick_params(labelsize=25, width=2.9)
     # ax.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
     #
-    # fig, ax = plt.subplots(figsize=(20, 10))
-    # ax.loglog(freq_ddra, np.sqrt(psd_ddra), linewidth=2, label='double differenced range')
-    # ax.semilogx(np.linspace(0.0001, 5, 10000),
-    #             2.62 *
-    #             np.sqrt(1 + (0.003 / np.linspace(0.0001, 5, 10000)**2)) * 1e-6,
-    #             label='stochastic error requirement')
-    # ax.set_xlabel(r'$Frequency [Hz]$', fontsize=20)
-    # ax.set_ylabel(r'$ASD [m/\sqrt{Hz}]$', fontsize=20)
-    # ax.yaxis.get_offset_text().set_fontsize(24)
-    # ax.legend(fontsize=20, loc='best', frameon=False)
-    # ax.tick_params(labelsize=25, width=2.9)
-    # ax.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
+    fig, ax = plt.subplots(figsize=(20, 10))
+    ax.loglog(freq_ddra, np.sqrt(psd_ddra), linewidth=2, label='double differenced range')
+    ax.semilogx(np.linspace(0.0001, 5, 10000),
+                2.62 *
+                np.sqrt(1 + (0.003 / np.linspace(0.0001, 5, 10000)**2)) * 1e-6,
+                label='stochastic error requirement')
+    ax.set_xlabel(r'$Frequency [Hz]$', fontsize=20)
+    ax.set_ylabel(r'$ASD [m/\sqrt{Hz}]$', fontsize=20)
+    ax.yaxis.get_offset_text().set_fontsize(24)
+    ax.legend(fontsize=20, loc='best', frameon=False)
+    ax.tick_params(labelsize=25, width=2.9)
+    ax.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
+    plt.show()
 
     # fig, ax = plt.subplots(figsize=(20, 10))
     # ax.hist(iono_corr_hf,

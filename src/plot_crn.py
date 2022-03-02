@@ -6,6 +6,8 @@ from matplotlib import ticker
 
 
 def main():
+    plt.rcParams["font.sans-serif"]=["Microsoft YaHei"] #设置字体
+    plt.rcParams["axes.unicode_minus"]=False
     crn_range = np.loadtxt('..//output//crn_range_residual_2019-01-01.txt', dtype=np.longdouble, delimiter=',')
     crn_rate = np.loadtxt('..//output//crn_rate_residual_2019-01-01.txt', dtype=np.longdouble, delimiter=',')
     crn_accl = np.loadtxt('..//output//crn_accl_residual_2019-01-01.txt', dtype=np.longdouble, delimiter=',')
@@ -35,27 +37,167 @@ def main():
     freq_rate_kresidual, psd_rate_kresidual = welch(kaiser_rate[:, 2], fs, ('kaiser', 30.), kaiser_rate[:, 0].__len__(), scaling='density')
     freq_accl_kresidual, psd_accl_kresidual = welch(kaiser_accl[:, 2], fs, ('kaiser', 30.), kaiser_accl[:, 0].__len__(), scaling='density')
 
-    plt.style.use(['science', 'no-latex', 'high-vis'])
+    # plt.style.use(['science', 'no-latex', "cjk-sc-font"])
     # crn range time series
-    fig, ax = plt.subplots(2, 1, figsize=(20, 10))
-    ax[0].plot(np.linspace(0, 86400, crn_range.__len__()), crn_range[:, 1], linewidth=2, label='UBN', marker='o', color='xkcd:aqua', alpha=0.5)
-    ax[0].plot(np.linspace(0, 86400, crn_range.__len__()), crn_range[:, 0], linewidth=2, label='JPL')
-    ax[0].yaxis.get_offset_text().set_fontsize(24)
-    ax[0].tick_params(labelsize=20, width=2.9)
-    ax[0].set_xlabel('Sampling Points [5Hz]', fontsize=20)
-    ax[0].set_ylabel(r'Inter-satelite range [m]', fontsize=20)
-    ax[0].legend(fontsize=10, loc='best')
-    ax[0].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
-    ax[1].plot(np.linspace(0, 86400, crn_range.__len__()),
+    fig = plt.figure(figsize=(20, 8))
+    ax1 = plt.subplot(2, 2, 1)
+    ax2 = plt.subplot(2, 2, 3)
+    ax3 = plt.subplot(1, 2, 2)
+    ax1.plot(np.linspace(0, 86400, crn_range.__len__()), crn_range[:, 1], linewidth=3, label='UBN_KBR_RL01', marker='o', color='xkcd:aqua', alpha=0.5)
+    ax1.plot(np.linspace(0, 86400, crn_range.__len__()), crn_range[:, 0], linewidth=2, label='JPL_KBR_RL04', color='xkcd:coral', linestyle='dashed')
+    ax1.yaxis.get_offset_text().set_fontsize(24)
+    ax1.tick_params(labelsize=20, width=2.9)
+    ax1.set_ylim(crn_range[:, 1].min() - 100, crn_range[:, 1].max() + 200)
+    ax1.set_ylabel('有偏星间距 [m]', fontsize=20)
+    ax1.legend(fontsize=15, loc='upper right', frameon=False)
+    ax1.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
+    ax1.text(0.01, 78450, "(a)", fontsize=15)
+    ax2.plot(np.linspace(0, 86400, crn_range.__len__()),
                crn_range[:, 2],
                linewidth=1,
                label='residual')
-    ax[1].tick_params(labelsize=20, width=2.9)
-    ax[1].yaxis.get_offset_text().set_fontsize(24)
-    ax[1].set_xlabel('Sampling Points [5Hz]', fontsize=20)
-    ax[1].set_ylabel(r'Intersatelite range residual [m]', fontsize=20)
-    ax[1].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
+    ax2.tick_params(labelsize=20, width=2.9)
+    ax2.yaxis.get_offset_text().set_fontsize(20)
+    ax2.set_xlabel('自2019-01-01T00:00:00开始GPS时', fontsize=20)
+    ax2.set_ylabel('星间距残差 [m]', fontsize=20)
+    ax2.text(0, -2e-8, "(b)", fontsize=15)
+    ax2.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
+    ax3.loglog(freq_range_cau,
+                 np.sqrt(psd_range_cau),
+                 linewidth=4,
+                 label='UBN_KBR_RL01',
+                 color='xkcd:aqua',)
+    ax3.loglog(freq_range_jpl,
+                 np.sqrt(psd_range_jpl),
+                 linewidth=1.5,
+                 label='JPL_KBR_RL04',
+                 color='xkcd:coral',
+                 linestyle='dashed')
+    ax3.loglog(freq_range_residual,
+                 np.sqrt(psd_range_residual),
+                 linewidth=2,
+                 label='残差')
+    ax3.text(1.5e-5, 1e-10, "(c)", fontsize=15)
+    ax3.tick_params(labelsize=25, width=2.9)
+    ax3.set_xlabel('频率 [Hz]', fontsize=20)
+    ax3.yaxis.get_offset_text().set_fontsize(24)
+    ax3.set_ylabel(r'ASD [m/$\sqrt{Hz}$]', fontsize=20)
+    ax3.legend(fontsize=15, loc='best', frameon=False)
+    ax3.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
+    # ax[2].gca().spines['left'].set_linewidth(2)
+    # ax[2].gca().spines['top'].set_linewidth(2)
+    # ax[2].gca().spines['right'].set_linewidth(2)
+    # ax[2].gca().spines['bottom'].set_linewidth(2)
+    plt.tight_layout()
+    plt.show()
     fig.savefig('..//images//crn_range_time_series.png', dpi=500)
+
+    fig = plt.figure(figsize=(20, 8))
+    ax1 = plt.subplot(2, 2, 1)
+    ax2 = plt.subplot(2, 2, 3)
+    ax3 = plt.subplot(1, 2, 2)
+    ax1.plot(np.linspace(0, 86400, crn_rate.__len__()), crn_rate[:, 1], linewidth=3, label='UBN_KBR_RL01', marker='o', color='xkcd:aqua', alpha=0.5)
+    ax1.plot(np.linspace(0, 86400, crn_rate.__len__()), crn_rate[:, 0], linewidth=2, label='JPL_KBR_RL04', color='xkcd:coral', linestyle='dashed')
+    ax1.yaxis.get_offset_text().set_fontsize(24)
+    ax1.tick_params(labelsize=20, width=2.9)
+    ax1.set_ylim(crn_rate[:, 1].min() - 0.3, crn_rate[:, 1].max() + 0.45)
+    ax1.set_ylabel('星间变率 [m/s]', fontsize=20)
+    ax1.legend(fontsize=15, loc='upper right', frameon=False)
+    ax1.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
+    ax1.text(0.01, -0.7, "(a)", fontsize=15)
+    ax2.plot(np.linspace(0, 86400, crn_rate.__len__()),
+               crn_rate[:, 2],
+               linewidth=1,
+               label='residual')
+    ax2.tick_params(labelsize=20, width=2.9)
+    ax2.yaxis.get_offset_text().set_fontsize(20)
+    ax2.set_xlabel('自2019-01-01T00:00:00开始GPS时', fontsize=20)
+    ax2.set_ylabel('星间变量残差 [m/s]', fontsize=20)
+    ax2.text(0, -8e-8, "(b)", fontsize=15)
+    ax2.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
+    ax3.loglog(freq_rate_cau,
+                 np.sqrt(psd_rate_cau),
+                 linewidth=4,
+                 label='UBN_KBR_RL01',
+                 color='xkcd:aqua',)
+    ax3.loglog(freq_rate_jpl,
+                 np.sqrt(psd_rate_jpl),
+                 linewidth=1.5,
+                 label='JPL_KBR_RL04',
+                 color='xkcd:coral',
+                 linestyle='dashed')
+    ax3.loglog(freq_rate_residual,
+                 np.sqrt(psd_rate_residual),
+                 linewidth=2,
+                 label='残差')
+    ax3.text(1.5e-5, 1e-10, "(c)", fontsize=15)
+    ax3.tick_params(labelsize=25, width=2.9)
+    ax3.set_xlabel('频率 [Hz]', fontsize=20)
+    ax3.yaxis.get_offset_text().set_fontsize(24)
+    ax3.set_ylabel(r'ASD [m/s/$\sqrt{Hz}$]', fontsize=20)
+    ax3.legend(fontsize=15, loc='best', frameon=False)
+    ax3.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
+    plt.tight_layout()
+    # ax[2].gca().spines['left'].set_linewidth(2)
+    # ax[2].gca().spines['top'].set_linewidth(2)
+    # ax[2].gca().spines['right'].set_linewidth(2)
+    # ax[2].gca().spines['bottom'].set_linewidth(2)
+    plt.show()
+    fig.savefig('..//images//crn_rate_time_series.png', dpi=500)
+
+    fig = plt.figure(figsize=(20, 8))
+    ax1 = plt.subplot(2, 2, 1)
+    ax2 = plt.subplot(2, 2, 3)
+    ax3 = plt.subplot(1, 2, 2)
+    ax1.plot(np.linspace(0, 86400, crn_accl.__len__()), crn_accl[:, 1], linewidth=3, label='UBN_KBR_RL01', marker='o', color='xkcd:aqua', alpha=0.5)
+    ax1.plot(np.linspace(0, 86400, crn_accl.__len__()), crn_accl[:, 0], linewidth=2, label='JPL_KBR_RL04', color='xkcd:coral', linestyle='dashed')
+    ax1.yaxis.get_offset_text().set_fontsize(24)
+    ax1.tick_params(labelsize=20, width=2.9)
+    ax1.set_ylim(crn_accl[:, 1].min() - 2e-4, crn_accl[:, 1].max() + 6e-4)
+    ax1.set_ylabel('星间加速度 [m/s]', fontsize=20)
+    ax1.legend(fontsize=15, loc='upper right', frameon=False)
+    ax1.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
+    ax1.text(0.01, -6e-4, "(a)", fontsize=15)
+    ax2.plot(np.linspace(0, 86400, crn_accl.__len__()),
+             crn_accl[:, 2],
+             linewidth=1,
+             label='residual')
+    ax2.tick_params(labelsize=20, width=2.9)
+    ax2.yaxis.get_offset_text().set_fontsize(20)
+    ax2.set_xlabel('自2019-01-01T00:00:00开始GPS时', fontsize=20)
+    ax2.set_ylabel('星间加速度残差 [m/s]', fontsize=20)
+    ax2.text(0, -4e-8, "(b)", fontsize=15)
+    ax2.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
+    ax3.loglog(freq_accl_cau,
+                 np.sqrt(psd_accl_cau),
+                 linewidth=4,
+                 label='UBN_KBR_RL01',
+                 color='xkcd:aqua',)
+    ax3.loglog(freq_accl_jpl,
+                 np.sqrt(psd_accl_jpl),
+                 linewidth=1.5,
+                 label='JPL_KBR_RL04',
+                 color='xkcd:coral',
+                 linestyle='dashed')
+    ax3.loglog(freq_accl_residual,
+                 np.sqrt(psd_accl_residual),
+                 linewidth=2,
+                 label='残差')
+    ax3.text(1.5e-5, 1e-12, "(c)", fontsize=15)
+    ax3.tick_params(labelsize=25, width=2.9)
+    ax3.set_xlabel('频率 [Hz]', fontsize=20)
+    ax3.yaxis.get_offset_text().set_fontsize(24)
+    ax3.set_ylabel(r'ASD [m/$s^2/\sqrt{Hz}$]', fontsize=20)
+    ax3.legend(fontsize=15, loc='best', frameon=False)
+    ax3.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
+    plt.tight_layout()
+    # ax[2].gca().spines['left'].set_linewidth(2)
+    # ax[2].gca().spines['top'].set_linewidth(2)
+    # ax[2].gca().spines['right'].set_linewidth(2)
+    # ax[2].gca().spines['bottom'].set_linewidth(2)
+    plt.show()
+    fig.savefig('..//images//crn_accl_time_series.png', dpi=500)
+    exit()
 
     # crn rate time series
     fig, ax = plt.subplots(2, 1, figsize=(20, 10))
@@ -64,7 +206,7 @@ def main():
     ax[0].tick_params(labelsize=20, width=2.9)
     ax[0].set_xlabel('Sampling Points [5Hz]', fontsize=20)
     ax[0].set_ylabel(r'Range Rate [m/s]', fontsize=20)
-    ax[0].legend(fontsize=10, loc='best')
+    ax[0].legend(fontsize=15, loc='best')
     ax[0].yaxis.get_offset_text().set_fontsize(24)
     ax[0].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
     ax[1].plot(np.linspace(0, 86400, crn_rate.__len__()),
@@ -78,6 +220,8 @@ def main():
     ax[1].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
     fig.savefig('..//images//crn_rate_time_series.png', dpi=500)
 
+    exit()
+
     # crn accl time series
     fig, ax = plt.subplots(2, 1, figsize=(50, 25))
     ax[0].plot(np.linspace(0, 86400, crn_accl.__len__()), crn_accl[:, 1], linewidth=2, label='UBN', marker='o', color='xkcd:aqua', alpha=0.5)
@@ -85,7 +229,7 @@ def main():
     ax[0].tick_params(labelsize=20, width=2.9)
     ax[0].set_xlabel('Sampling Points [5Hz]', fontsize=20)
     ax[0].set_ylabel(r'Range accelaration [m/s]', fontsize=20)
-    ax[0].legend(fontsize=10, loc='best')
+    ax[0].legend(fontsize=15, loc='best')
     ax[0].yaxis.get_offset_text().set_fontsize(24)
     ax[0].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
     ax[1].plot(np.linspace(0, 86400, crn_accl.__len__()),
@@ -106,7 +250,7 @@ def main():
     ax[0].tick_params(labelsize=20, width=2.9)
     ax[0].set_xlabel('Sampling Points [5Hz]', fontsize=20)
     ax[0].set_ylabel(r'Intersatelite range [m]', fontsize=20)
-    ax[0].legend(fontsize=10, loc='best')
+    ax[0].legend(fontsize=15, loc='best')
     ax[0].yaxis.get_offset_text().set_fontsize(24)
     ax[0].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
     ax[1].plot(np.linspace(0, 86400, kaiser_range.__len__()),
@@ -127,7 +271,7 @@ def main():
     ax[0].tick_params(labelsize=20, width=2.9)
     ax[0].set_xlabel('Sampling Points [5Hz]', fontsize=20)
     ax[0].set_ylabel(r'Range Rate [m/s]', fontsize=20)
-    ax[0].legend(fontsize=10, loc='best')
+    ax[0].legend(fontsize=15, loc='best')
     ax[0].yaxis.get_offset_text().set_fontsize(24)
     ax[0].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
     ax[1].plot(np.linspace(0, 86400, kaiser_rate.__len__()),
@@ -148,7 +292,7 @@ def main():
     ax[0].tick_params(labelsize=20, width=2.9)
     ax[0].set_xlabel('Sampling Points [5Hz]', fontsize=20)
     ax[0].set_ylabel(r'Range accelaration [m/s]', fontsize=20)
-    ax[0].legend(fontsize=10, loc='best')
+    ax[0].legend(fontsize=15, loc='best')
     ax[0].yaxis.get_offset_text().set_fontsize(24)
     ax[0].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
     ax[1].plot(np.linspace(0, 86400, kaiser_accl.__len__()),
@@ -175,7 +319,7 @@ def main():
     plt.xlabel('Frequency [Hz]', fontsize=20)
     ax.yaxis.get_offset_text().set_fontsize(24)
     plt.ylabel(r'$Range \, \, ASD [m/\sqrt{Hz}]$', fontsize=20)
-    plt.legend(fontsize=20, loc='best')
+    plt.legend(fontsize=15, loc='best')
     plt.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
     plt.gca().spines['left'].set_linewidth(2)
     plt.gca().spines['top'].set_linewidth(2)
@@ -191,7 +335,7 @@ def main():
     plt.xlabel('Frequency [Hz]', fontsize=20)
     ax.yaxis.get_offset_text().set_fontsize(24)
     plt.ylabel(r'$Range Rate \, \, ASD [m/s/\sqrt{Hz}]$', fontsize=20)
-    plt.legend(fontsize=20, loc='best')
+    plt.legend(fontsize=15, loc='best')
     plt.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
     plt.gca().spines['left'].set_linewidth(2)
     plt.gca().spines['top'].set_linewidth(2)
@@ -207,7 +351,7 @@ def main():
     plt.xlabel('Frequency [Hz]', fontsize=20)
     ax.yaxis.get_offset_text().set_fontsize(24)
     plt.ylabel(r'$Range Accelaration \, \, ASD [m/s^2/\sqrt{Hz}]$', fontsize=20)
-    plt.legend(fontsize=20, loc='best')
+    plt.legend(fontsize=15, loc='best')
     plt.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
     plt.gca().spines['left'].set_linewidth(2)
     plt.gca().spines['top'].set_linewidth(2)
@@ -233,7 +377,7 @@ def main():
     plt.xlabel('Frequency [Hz]', fontsize=20)
     ax.yaxis.get_offset_text().set_fontsize(24)
     plt.ylabel(r'$Range \, \, ASD [m/\sqrt{Hz}]$', fontsize=20)
-    plt.legend(fontsize=20, loc='best')
+    plt.legend(fontsize=15, loc='best')
     plt.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
     plt.gca().spines['left'].set_linewidth(2)
     plt.gca().spines['top'].set_linewidth(2)
@@ -258,7 +402,7 @@ def main():
     plt.xlabel('Frequency [Hz]', fontsize=20)
     ax.yaxis.get_offset_text().set_fontsize(24)
     plt.ylabel(r'$Range Rate \, \, ASD [m/s/\sqrt{Hz}]$', fontsize=20)
-    plt.legend(fontsize=20, loc='best')
+    plt.legend(fontsize=15, loc='best')
     plt.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
     plt.gca().spines['left'].set_linewidth(2)
     plt.gca().spines['top'].set_linewidth(2)
@@ -284,7 +428,7 @@ def main():
     ax.yaxis.get_offset_text().set_fontsize(24)
     plt.ylabel(r'$Range Accelaration \, \, ASD [m/s^2/\sqrt{Hz}]$',
                fontsize=20)
-    plt.legend(fontsize=20, loc='best')
+    plt.legend(fontsize=15, loc='best')
     plt.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
     plt.gca().spines['left'].set_linewidth(2)
     plt.gca().spines['top'].set_linewidth(2)
@@ -295,6 +439,8 @@ def main():
 
 
 def tof():
+    plt.rcParams["font.sans-serif"] = ["Microsoft YaHei"]  #设置字体
+    plt.rcParams["axes.unicode_minus"] = False
     tof = np.loadtxt('..//output//tof_2019-01-01.txt')
     dd_KBR1B = dd.read_csv(
         urlpath='..//input//KBR1B_2019-01-01_Y_04.txt', engine='c', header=None,
@@ -306,39 +452,77 @@ def tof():
     )
 
     tof_range_1b = dd_KBR1B.lighttime_corr.compute().to_numpy()
-    print(tof[460], tof_range_1b[92])
-    # plt.style.use(['science', 'no-latex', 'high-vis'])
-    fig, ax = plt.subplots(2, 1, figsize=(50, 25))
-    ax[0].plot(np.linspace(0, 86400, tof[460: 80460: 5].__len__()),
-               tof[460: 80460: 5],
-               linewidth=2,
-               label='UBN',
-               marker='o',
-               color='lawngreen',
-               alpha=0.5)
-    ax[0].plot(np.linspace(0, 86400, tof[460:80460:5].__len__()),
-               tof_range_1b[92: 16092],
-               linewidth=2,
-               label='JPL',
-               color='red')
-    ax[0].tick_params(labelsize=20, width=2.9)
-    ax[0].set_xlabel(u'自2019年1月1日00:00:00开始GPS时间 [s]', fontsize=20)
-    ax[0].set_ylabel(u'飞行时间改正 [m]', fontsize=20)
-    ax[0].legend(fontsize=10, loc='best', frameon=False)
-    ax[0].yaxis.get_offset_text().set_fontsize(24)
-    ax[0].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
-    ax[1].plot(np.linspace(0, 86400, tof[460: 80460: 5].__len__()), tof[460: 80460: 5] - tof_range_1b[92: 16092])
-    ax[1].set_xlabel(u'自2019年1月1日00:00:00开始GPS时间 [s]', fontsize=20)
-    ax[1].yaxis.get_offset_text().set_fontsize(24)
-    ax[1].set_ylabel(u'飞行时间改正残差 [m]', fontsize=20)
-    # plt.legend(fontsize=20, loc='best')
-    ax[1].tick_params(labelsize=25, width=2.9)
-    ax[1].grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
-    # axis thicken
-    for index, _ in enumerate(ax):
-        for axis in ['top', 'bottom', 'left', 'right']:
-            ax[index].spines[axis].set_linewidth(2)
+    fs = 0.2
+    freq_tof_jpl, psd_tof_jpl = welch(tof_range_1b[92: 16092], fs, ('kaiser', 30.), tof_range_1b[92: 16092].__len__(), scaling='density')
+    freq_tof_chd, psd_tof_chd = welch(tof[460: 80460: 5], fs, ('kaiser', 30.), tof[460: 80460: 5].__len__(), scaling='density')
+    freq_tof_res, psd_tof_res = welch(tof[460: 80460: 5] - tof_range_1b[92: 16092], fs, ('kaiser', 30.), tof[460: 80460: 5].__len__(), scaling='density')
+
+    fig = plt.figure(figsize=(20, 8))
+    ax1 = plt.subplot(2, 1, 1)
+    ax2 = plt.subplot(2, 1, 2)
+    # ax3 = plt.subplot(1, 2, 2)
+    ax1.plot(np.linspace(0, 86400, tof[460: 80460: 5].__len__()),
+             tof[460: 80460: 5],
+             linewidth=3,
+             label='UBN_KBR_RL01',
+             marker='o',
+             color='xkcd:aqua',
+             alpha=0.5)
+    ax1.plot(np.linspace(0, 86400, tof[460: 80460: 5].__len__()),
+             tof_range_1b[92: 16092],
+             linewidth=2,
+             label='JPL_KBR_RL04',
+             color='xkcd:coral',
+             linestyle='dashed')
+    ax1.yaxis.get_offset_text().set_fontsize(24)
+    ax1.tick_params(labelsize=20, width=2.9)
+    ax1.set_ylim(tof_range_1b[92:16092].min() - 2e-4,
+                 tof_range_1b[92:16092].max() + 2e-4)
+    ax1.set_ylabel('飞行时改正 [m]', fontsize=20)
+    ax1.legend(fontsize=15, loc='upper right', frameon=False)
+    ax1.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
+    ax1.text(0.01, -7e-4, "(a)", fontsize=15)
+    ax2.plot(np.linspace(0, 86400, tof[460: 80460: 5].__len__()),
+             tof[460: 80460: 5] - tof_range_1b[92: 16092],
+             linewidth=1,
+             label='residual')
+    ax2.tick_params(labelsize=20, width=2.9)
+    ax2.yaxis.get_offset_text().set_fontsize(20)
+    ax2.set_xlabel('自2019-01-01T00:00:00开始GPS时', fontsize=20)
+    ax2.set_ylabel('飞行时间改正残差 [m/s]', fontsize=20)
+    ax2.text(0, -4e-9, "(b)", fontsize=15)
+    ax2.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
+    # ax3.loglog(
+    #     freq_tof_chd,
+    #     np.sqrt(psd_tof_chd),
+    #     linewidth=4,
+    #     label='UBN_KBR_RL01',
+    #     color='xkcd:aqua',
+    # )
+    # ax3.loglog(freq_tof_jpl,
+    #            np.sqrt(psd_tof_jpl),
+    #            linewidth=1.5,
+    #            label='JPL_KBR_RL04',
+    #            color='xkcd:coral',
+    #            linestyle='dashed')
+    # ax3.loglog(freq_tof_res,
+    #            np.sqrt(psd_tof_res),
+    #            linewidth=2,
+    #            label='残差')
+    # ax3.text(1.5e-5, 1e-11, "(c)", fontsize=15)
+    # ax3.tick_params(labelsize=25, width=2.9)
+    # ax3.set_xlabel('频率 [Hz]', fontsize=20)
+    # ax3.yaxis.get_offset_text().set_fontsize(24)
+    # ax3.set_ylabel(r'ASD [m/$\sqrt{Hz}$]', fontsize=20)
+    # ax3.legend(fontsize=15, loc='best', frameon=False)
+    # ax3.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
+    plt.tight_layout()
+    # ax[2].gca().spines['left'].set_linewidth(2)
+    # ax[2].gca().spines['top'].set_linewidth(2)
+    # ax[2].gca().spines['right'].set_linewidth(2)
+    # ax[2].gca().spines['bottom'].set_linewidth(2)
     plt.show()
+    fig.savefig('..//images//tof_psd_xxx.png', dpi=500)
 
 
 def kaiser_compare():
@@ -389,7 +573,7 @@ def kaiser_compare():
     ax.xaxis.set_minor_locator(locmin)
     ax.xaxis.set_minor_formatter(ticker.NullFormatter())
     ax.set_ylabel(r'$Range \, \, ASD [m/\sqrt{Hz}]$', fontsize=20)
-    plt.legend(fontsize=20, loc='best')
+    plt.legend(fontsize=15, loc='best')
     # plt.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
     fig.savefig('..//images//kaiser-psd-comparison.png', dpi=500)
     plt.show()
