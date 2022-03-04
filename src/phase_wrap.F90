@@ -43,10 +43,10 @@ program main
     ! start time for this programme
     call CPU_TIME(start_time)
 
-    date = '2019-01-01'
+    date = '2019-06-22'
     call get_environment_variable('PWD', pwd)
     !DEC$ IF DEFINED(_WIN32)
-        call execute_command_line('python ../preFORfortran.py '//date)
+        call execute_command_line('D:\Users\LHS10\anaconda3\python.exe ../preFORfortran.py '//date)
     !DEC$ ELSEIF DEFINED(__linux)
         call execute_command_line('~/anaconda3/bin/python ../src/preFORfortran.py '//date)
     !DEC$ ELSE

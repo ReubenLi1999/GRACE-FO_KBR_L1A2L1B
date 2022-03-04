@@ -3,5 +3,6 @@
     "python.pythonPath": "/home/reuben/anaconda3/bin/python",
     "editor.detectIndentation": false,
     "editor.tabSize": 4,
-    "editor.formatOnPaste": true
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
 }

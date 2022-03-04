@@ -1,3 +1,4 @@
+# encoding: utf-8
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import welch
@@ -6,7 +7,7 @@ from matplotlib import ticker
 
 
 def main():
-    plt.rcParams["font.sans-serif"]=["Microsoft YaHei"] #设置字体
+    plt.rcParams["font.sans-serif"]=["Microsoft YaHei"] 
     plt.rcParams["axes.unicode_minus"]=False
     crn_range = np.loadtxt('..//output//crn_range_residual_2019-01-01.txt', dtype=np.longdouble, delimiter=',')
     crn_rate = np.loadtxt('..//output//crn_rate_residual_2019-01-01.txt', dtype=np.longdouble, delimiter=',')

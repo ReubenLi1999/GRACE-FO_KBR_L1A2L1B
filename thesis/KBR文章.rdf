@@ -1,0 +1,1207 @@
+<rdf:RDF
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:z="http://www.zotero.org/namespaces/export#"
+ xmlns:dcterms="http://purl.org/dc/terms/"
+ xmlns:bib="http://purl.org/net/biblio#"
+ xmlns:foaf="http://xmlns.com/foaf/0.1/"
+ xmlns:link="http://purl.org/rss/1.0/modules/link/"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:prism="http://prismstandard.org/namespaces/1.2/basic/"
+ xmlns:vcard="http://nwalsh.com/rdf/vCard#">
+    <bib:Article rdf:about="https://arc.aiaa.org/doi/10.2514/1.A34326">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:0022-4650,%201533-6794"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kornfeld</foaf:surname>
+                        <foaf:givenName>Richard P.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Arnold</foaf:surname>
+                        <foaf:givenName>Bradford W.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Gross</foaf:surname>
+                        <foaf:givenName>Michael A.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Dahya</foaf:surname>
+                        <foaf:givenName>Neil T.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Klipstein</foaf:surname>
+                        <foaf:givenName>William M.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Gath</foaf:surname>
+                        <foaf:givenName>Peter F.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bettadpur</foaf:surname>
+                        <foaf:givenName>Srinivas</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_18"/>
+        <dc:title>GRACE-FO: The Gravity Recovery and Climate Experiment Follow-On Mission</dc:title>
+        <dc:date>05/2019</dc:date>
+        <z:language>en</z:language>
+        <z:shortTitle>GRACE-FO</z:shortTitle>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://arc.aiaa.org/doi/10.2514/1.A34326</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2020-11-23 06:16:42</dcterms:dateSubmitted>
+        <bib:pages>931-951</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:0022-4650,%201533-6794">
+        <prism:volume>56</prism:volume>
+        <dc:title>Journal of Spacecraft and Rockets</dc:title>
+        <dc:identifier>DOI 10.2514/1.A34326</dc:identifier>
+        <prism:number>3</prism:number>
+        <dcterms:alternative>Journal of Spacecraft and Rockets</dcterms:alternative>
+        <dc:identifier>ISSN 0022-4650, 1533-6794</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_18">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="E:\lhsProgrammes\a2b\docs\1.A34326.pdf"/>
+        <dc:title>1.A34326.pdf</dc:title>
+        <z:linkMode>2</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_31">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Thomas</foaf:surname>
+                        <foaf:givenName>J.B.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_19"/>
+        <dc:title>An Analysis of Gravity-Field Estimation Based on Intersatellite Dual-1-Way Biased Ranging</dc:title>
+        <dc:date>1999-5</dc:date>
+        <z:libraryCatalog>Zotero</z:libraryCatalog>
+        <bib:pages>196</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_19">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="E:\lhsProgrammes\a2b\docs\10.0000@apps.dtic.mil@ADA410563.pdf"/>
+        <dc:title>10.0000@apps.dtic.mil@ADA410563.pdf</dc:title>
+        <z:linkMode>2</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_32">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <prism:volume>32</prism:volume>
+                <dc:title>IEEE TRANSACTIONS ON GEOSCIENCE AND REMOTE SENSING</dc:title>
+                <prism:number>1</prism:number>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wong</foaf:surname>
+                        <foaf:givenName>Henry</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Antoniou</foaf:surname>
+                        <foaf:givenName>Andreas</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_20"/>
+        <dc:title>One-Dimensional Signal Processing Techniques for Airbome Laser Bathymetry</dc:title>
+        <dcterms:abstract>The application of one-dimensional signal processing techniques for the preprocessing of waveforms obtained in airborne laser bathymetry is investigated. Specifically, a special type of smoothing digital filter is used to remove noise in the waveforms while preserving the information content up to a desired degree. An algorithm, which incorporates a lowpass digital differentiator, is then used to detect the bottom reflection. The optimal cutoff frequency of the differentiator is determined on the basis of the spectral content of the bottom reflection. After preprocessing, a waveform-decomposition technique recently described by the authors is used to separate the surface and bottom reflections for sea-depth estimation. In order to evaluate the effectiveness of the techniques developed, sea-depth estimates obtained are compared to corresponding estimates obtained by a local surveying company, and a high degree of agreement is observed between the two sets of results. When the resolution between the surface and bottom returns is low, the proposed techniquestogether with waveform decompositionoffer a significant improvement in the sea-depth estimates.</dcterms:abstract>
+        <dc:date>1994</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>Zotero</z:libraryCatalog>
+        <bib:pages>12</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_20">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="E:\lhsProgrammes\a2b\docs\36.285187.pdf"/>
+        <dc:title>36.285187.pdf</dc:title>
+        <z:linkMode>2</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="http://research.ijcaonline.org/volume87/number5/pxc3893594.pdf">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:09758887"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Singh</foaf:surname>
+                        <foaf:givenName>Simranjot</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Singh</foaf:surname>
+                        <foaf:givenName>Kulbir</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_22"/>
+        <dc:title>Higher Order Low Pass FIR Digital Differentiators</dc:title>
+        <dcterms:abstract>In this paper design of non-recursive higher order low pass digital differentiators satisfying given specifications is investigated. The concept of low pass differentiation is further generalized to higher order differentiators. A formula is derived using Fourier integral to compute impulse response coefficients of the differentiator. The equation is then used to design first order differentiators and results are compared with Salesnick’s technique. The proposed FIR low pass differentiator has improvement in transition width and flexibility to choose cutoff frequency. The same technique has been demonstrated for second order design according to provided specifications. This method is used in the design of second order low pass differentiator for QRS detection in ECG. It is shown that the proposed implementation has low hardware and software complexity as compared to existing second derivative based techniques of QRS detection, giving advantage in optimization of current real time ECG systems.</dcterms:abstract>
+        <dc:date>2014-02-14</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://research.ijcaonline.org/volume87/number5/pxc3893594.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2020-11-23 06:16:48</dcterms:dateSubmitted>
+        <bib:pages>13-18</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:09758887">
+        <prism:volume>87</prism:volume>
+        <dc:title>International Journal of Computer Applications</dc:title>
+        <dc:identifier>DOI 10.5120/15203-3594</dc:identifier>
+        <prism:number>5</prism:number>
+        <dcterms:alternative>IJCA</dcterms:alternative>
+        <dc:identifier>ISSN 09758887</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_22">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="E:\lhsProgrammes\a2b\docs\download.pdf"/>
+        <dc:title>download.pdf</dc:title>
+        <z:linkMode>2</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Report rdf:about="https://meetingorganizer.copernicus.org/EGU2020/EGU2020-15569.html">
+        <z:itemType>report</z:itemType>
+        <dc:publisher>
+           <foaf:Organization><foaf:name>oral</foaf:name></foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Misfeldt</foaf:surname>
+                        <foaf:givenName>Malte</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Müller</foaf:surname>
+                        <foaf:givenName>Vitali</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Heinzel</foaf:surname>
+                        <foaf:givenName>Gerhard</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Danzmann</foaf:surname>
+                        <foaf:givenName>Karsten</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_23"/>
+        <dc:title>Alternative Level 1A to 1B Processing of GRACE Follow-On LRI data</dc:title>
+        <dcterms:abstract>&amp;lt;p&amp;gt;The Laser Ranging Interferometer (LRI) on-board GRACE Follow-On, which was&amp;amp;#160;launched in May 2018, provides ranging data between two satellites with previously unknown precision. The low noise level of approximately 200 pm/rtHz at Fourier frequencies around 10 Hz allows us to investigate features, that have not been seen before in the ranging data. &amp;amp;#160;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;Due to this high sensitivity of the LRI, we are able to assess spurious linear non-gravitational accelerations in direction of the line-of-sight caused by attitude thruster activation, which should ideally produce only angular motion. This analysis may help to refine the models used in the Calibrated Accelerometer Data&amp;amp;#160;(ACT) product. The ACT product is derived from raw accelerometer data and corrects artefacts present in the raw accelerometer (ACC) product. However, linear non-gravitational accelerations can only be measured in narrow frequency ranges by the LRI, where&amp;amp;#160;the gravity ranging signal decayed below other contributors.&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;The conversion of LRI Level-1A to 1B is a complex task that comprises non-trivial removal of phase jumps, scaling, filtering and interpolation of data. In order to access the high-quality ranging data and have low post-fit residuals, the LRI instrument team at the Albert-Einstein Institute (AEI) in Hanover, Germany derived an alternative LRI Level-1B data product for January 2019 with some improvements compared to the official SDS RL04 data. The data can be downloaded at https://wolke7.aei.mpg.de/s/AYza4wrFjYBxHHQ.&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;In this poster we compare the AEI release with RL04 and explain the differences in the preprocessing of the data, which mainly originate from a more sophisticated estimation of the scale factor (i.e. the absolute laser frequency or wavelength), a continuous data stream without biases at day bounds and a light time correction with less noise from numerical inaccuracies.&amp;lt;/p&amp;gt;</dcterms:abstract>
+        <dc:date>2020-03-23</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://meetingorganizer.copernicus.org/EGU2020/EGU2020-15569.html</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2020-11-23 06:16:54</dcterms:dateSubmitted>
+        <dc:description>DOI: 10.5194/egusphere-egu2020-15569</dc:description>
+        <z:type>other</z:type>
+    </bib:Report>
+    <z:Attachment rdf:about="#item_23">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="E:\lhsProgrammes\a2b\docs\EGU2020-15569_presentation.pdf"/>
+        <dc:title>EGU2020-15569_presentation.pdf</dc:title>
+        <z:linkMode>2</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_35">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Diniz</foaf:surname>
+                        <foaf:givenName>Paulo S R</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_24"/>
+        <dc:title>FIR Filter Approximations</dc:title>
+        <z:language>en</z:language>
+        <z:libraryCatalog>Zotero</z:libraryCatalog>
+        <bib:pages>107</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_24">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="E:\lhsProgrammes\a2b\docs\filt_cours_4.pdf"/>
+        <dc:title>filt_cours_4.pdf</dc:title>
+        <z:linkMode>2</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_36">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Frommknecht</foaf:surname>
+                        <foaf:givenName>Bjorn</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_25"/>
+        <dc:title>Integrated Sensor Analysis of the GRACE Mission</dc:title>
+        <dcterms:abstract>The geodetic twin satellite mission GRACE delivers gravity ﬁeld models of the Earth of unprecedented accuracy. However, the originally deﬁned mission baseline is not (yet) reached. Among others, deﬁciencies in the gravity ﬁeld sensor system or the related signal processing could be responsible for the degraded performance.</dcterms:abstract>
+        <dc:date>2007-10</dc:date>
+        <z:language>de</z:language>
+        <z:libraryCatalog>Zotero</z:libraryCatalog>
+        <bib:pages>210</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_25">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="E:\lhsProgrammes\a2b\docs\Frommknecht - Integrated Sensor Analysis of the GRACE Mission.pdf"/>
+        <dc:title>Frommknecht - Integrated Sensor Analysis of the GRACE Mission.pdf</dc:title>
+        <z:linkMode>2</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Thesis rdf:about="#item_37">
+        <z:itemType>thesis</z:itemType>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Linköping</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>Department of Electrical Engineering, Linköping University</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sheikh</foaf:surname>
+                        <foaf:givenName>Zaka Ullah</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_26"/>
+        <dc:title>Efficient realizations of wide-band and reconfigurable FIR systems</dc:title>
+        <dc:date>2012</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>Open WorldCat</z:libraryCatalog>
+        <dc:description>ISBN: 9789175199726
+OCLC: 940230696</dc:description>
+    </bib:Thesis>
+    <z:Attachment rdf:about="#item_26">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="E:\lhsProgrammes\a2b\docs\FULLTEXT03.pdf"/>
+        <dc:title>FULLTEXT03.pdf</dc:title>
+        <z:linkMode>2</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_38">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wu</foaf:surname>
+                        <foaf:givenName>Sien-Chong</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kruizinga</foaf:surname>
+                        <foaf:givenName>Gerhard</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bertiger</foaf:surname>
+                        <foaf:givenName>Willy</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_27"/>
+        <dc:title>Algorithm Theoretical Basis Document for GRACE Level-1B Data Processing V1.2</dc:title>
+        <dc:date>2006-5-9</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>Zotero</z:libraryCatalog>
+        <bib:pages>54</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_27">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="E:\lhsProgrammes\a2b\docs\GRACE_Algorithm_Theoretical_Basis_Document_for_GRACE_L1B_Data_Processing.pdf"/>
+        <dc:title>GRACE_Algorithm_Theoretical_Basis_Document_for_GRACE_L1B_Data_Processing.pdf</dc:title>
+        <z:linkMode>2</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_40">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wen</foaf:surname>
+                        <foaf:givenName>Hui Ying</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kruizinga</foaf:surname>
+                        <foaf:givenName>Gerhard</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Paik</foaf:surname>
+                        <foaf:givenName>Meegyeong</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Landerer</foaf:surname>
+                        <foaf:givenName>Felix</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bertiger</foaf:surname>
+                        <foaf:givenName>William</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sakumura</foaf:surname>
+                        <foaf:givenName>Carly</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bandikova</foaf:surname>
+                        <foaf:givenName>Tamara</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Mccullough</foaf:surname>
+                        <foaf:givenName>Christopher</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_28"/>
+        <dc:title>Gravity Recovery and Climate Experiment Follow-On (GRACE-FO) Level-1 Data Product User Handbook</dc:title>
+        <dc:date>2019-9-11</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>Zotero</z:libraryCatalog>
+        <bib:pages>60</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_28">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="E:\lhsProgrammes\a2b\docs\GRACE-FO_L1_Handbook.pdf"/>
+        <dc:title>GRACE-FO_L1_Handbook.pdf</dc:title>
+        <z:linkMode>2</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_45">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>MISFELDT</foaf:surname>
+                        <foaf:givenName>MALTE MATTHIAS</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_30"/>
+        <dc:title>Data Processing and Investigations for the GRACE Follow-On Laser Ranging Interferometer</dc:title>
+        <dcterms:abstract>This thesis presents first in-depth results of the Laser Ranging Interferometer (LRI) onboard the Gravity Recovery And Climate Experiment - Follow On (GRACE-Follow On) mission. The LRI is a novel instrument, which was developed in a U.S.-German collaboration including the Albert-Einstein Institute (AEI) in Hanover. It successfully demonstrated the feasibility of ranging measurements by means of laser interferometry between two distant spacecraft and will push space-borne gravimetry missions to the next sensitivity level. The author of this thesis contributed to this project by programming a comprehensive framework for ground-processing of LRI telemetry and analyzing various kinds of instrument data streams. Therefore, the title of this thesis covers both topics, data processing and investigations within the data. Within this thesis, an introduction to laser interferometry is given and the various payloads of the GRACE-Follow On satellites are presented. Furthermore, the design of the LRI itself is discussed, in order to understand the profound causal relations when getting into the details of investigations. The various kinds of telemetry data and their processing levels are presented, giving an insight about the variety of data sets, that are downlinked from the satellites. The investigations cover various major topics. These reach from different models to assess the absolute laser frequency, which sets the scale to convert the raw phase measurements into corresponding inter-satellite displacements, and comprise a detailed investigation of the carrier to noise ratio, which provides information about the signal quality. Furthermore, the laser’s beam properties in the far-field are investigated by means of the intensity and the phasefront. These investigations even lead to a proposal for a new scan pattern, which has actually been performed. Last but not least, a comprehensive assessment of the LRI spectrum was performed, which reveals correlation between the satellite’s attitude and orbit control system (AOCS), i.e. the star cameras for attitude determination and thruster activations for attitude control, and the ranging signal, measured by the LRI. In summary, this thesis is concerned with several aspects of the LRI characterization and data analysis. Since the overall data quality and sensitivity of the LRI exceeds the needs and expectations for the current gravimetric mission, many of the discussed effects are rather of academic interest, e.g. to deepen the instrument understanding of the LRI team and for the development of future missions in the field of geodesy or the space-based gravitational wave detection (LISA mission).</dcterms:abstract>
+        <dc:date>2019-6</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>Zotero</z:libraryCatalog>
+        <bib:pages>136</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_30">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="E:\lhsProgrammes\a2b\docs\mamisf_master_thesis.pdf"/>
+        <dc:title>mamisf_master_thesis.pdf</dc:title>
+        <z:linkMode>2</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="urn:isbn:978-0-7803-7576-5">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <prism:volume>1</prism:volume>
+                <dc:identifier>ISBN 978-0-7803-7576-5</dc:identifier>
+                <dc:title>Conference Record of the Thirty-Sixth Asilomar Conference on Signals, Systems and Computers, 2002.</dc:title>
+                <dc:identifier>DOI 10.1109/ACSSC.2002.1197207</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Pacific Grove, CA, USA</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>IEEE</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Selesnick</foaf:surname>
+                        <foaf:givenName>I.W.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_41"/>
+        <dc:title>Narrowband lowpass digital differentiator design</dc:title>
+        <dcterms:abstract>This paper describes a simple formulation for the noniterative design of narrow-band FIR linear-phase lowpass digital diﬀerentiators. The frequency response of the ﬁlters are ﬂat around dc and have equally spaced nulls in the stopband. The design problem is formulated so as to avoid the complexity or ill-conditioning of standard methods for the design of similar ﬁlters when those methods are used to design narrow-band ﬁlters with long impulse responses.</dcterms:abstract>
+        <dc:date>2002</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://ieeexplore.ieee.org/document/1197207/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2020-11-23 06:17:19</dcterms:dateSubmitted>
+        <bib:pages>360-364</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>Conference Record of the Thirty-Sixth Asilomar Conference on Signals, Systems and Computers</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_41">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="E:\lhsProgrammes\a2b\docs\nb_lowdiff.pdf"/>
+        <dc:title>nb_lowdiff.pdf</dc:title>
+        <z:linkMode>2</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_50">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Holoborodko</foaf:surname>
+                        <foaf:givenName>Pavel</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_43"/>
+        <dc:title>Noise Robust Diﬀerentiators for Second Derivative Estimation</dc:title>
+        <z:language>en</z:language>
+        <z:libraryCatalog>Zotero</z:libraryCatalog>
+        <bib:pages>3</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_43">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="E:\lhsProgrammes\a2b\docs\NoiseRobustSecondDerivative.pdf"/>
+        <dc:title>NoiseRobustSecondDerivative.pdf</dc:title>
+        <z:linkMode>2</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_51">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Müller</foaf:surname>
+                        <foaf:givenName>Vitali</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_46"/>
+        <dc:title>Design considerations for future geodesy missions and for space laser interferometry</dc:title>
+        <dc:date>2017-10</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>Zotero</z:libraryCatalog>
+        <bib:pages>326</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_46">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="E:\lhsProgrammes\a2b\docs\Vitali.pdf"/>
+        <dc:title>Vitali.pdf</dc:title>
+        <z:linkMode>2</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Thesis rdf:about="#item_52">
+        <z:itemType>thesis</z:itemType>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Smith</foaf:surname>
+                        <foaf:givenName>Matthew Scott</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:title>Utilization of simulated GRACE inter-satellite range-accelerations to estimate Earth's gravity field</dc:title>
+        <dc:date>2019</dc:date>
+    </bib:Thesis>
+    <bib:Book rdf:about="#item_53">
+        <z:itemType>book</z:itemType>
+        <dc:publisher>
+            <foaf:Organization>
+               <foaf:name>McGraw-Hill</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Antoniou</foaf:surname>
+                        <foaf:givenName>A.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:title>Digital filters: analysis, design, and signal processing applications</dc:title>
+        <dc:date>2018</dc:date>
+    </bib:Book>
+    <bib:Article rdf:about="#item_59">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kim</foaf:surname>
+                        <foaf:givenName>Jeongrae</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_57"/>
+        <dc:title>Simulation Study of A Low-Low Satellite-to-Satellite Tracking Mission</dc:title>
+        <dc:date>2000-5</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>Zotero</z:libraryCatalog>
+        <bib:pages>289</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_57">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="D:\Downloads\Kim_dissertation.pdf"/>
+        <dc:title>Kim_dissertation.pdf</dc:title>
+        <z:linkMode>2</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://link.aps.org/doi/10.1103/PhysRevLett.123.031101">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:0031-9007,%201079-7114"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Abich</foaf:surname>
+                        <foaf:givenName>Klaus</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Abramovici</foaf:surname>
+                        <foaf:givenName>Alexander</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Amparan</foaf:surname>
+                        <foaf:givenName>Bengie</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Baatzsch</foaf:surname>
+                        <foaf:givenName>Andreas</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Okihiro</foaf:surname>
+                        <foaf:givenName>Brian Bachman</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Barr</foaf:surname>
+                        <foaf:givenName>David C.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bize</foaf:surname>
+                        <foaf:givenName>Maxime P.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bogan</foaf:surname>
+                        <foaf:givenName>Christina</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Braxmaier</foaf:surname>
+                        <foaf:givenName>Claus</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Burke</foaf:surname>
+                        <foaf:givenName>Michael J.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Clark</foaf:surname>
+                        <foaf:givenName>Ken C.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Dahl</foaf:surname>
+                        <foaf:givenName>Christian</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Dahl</foaf:surname>
+                        <foaf:givenName>Katrin</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Danzmann</foaf:surname>
+                        <foaf:givenName>Karsten</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Davis</foaf:surname>
+                        <foaf:givenName>Mike A.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>de Vine</foaf:surname>
+                        <foaf:givenName>Glenn</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Dickson</foaf:surname>
+                        <foaf:givenName>Jeffrey A.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Dubovitsky</foaf:surname>
+                        <foaf:givenName>Serge</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Eckardt</foaf:surname>
+                        <foaf:givenName>Andreas</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ester</foaf:surname>
+                        <foaf:givenName>Thomas</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Barranco</foaf:surname>
+                        <foaf:givenName>Germán Fernández</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Flatscher</foaf:surname>
+                        <foaf:givenName>Reinhold</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Flechtner</foaf:surname>
+                        <foaf:givenName>Frank</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Folkner</foaf:surname>
+                        <foaf:givenName>William M.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Francis</foaf:surname>
+                        <foaf:givenName>Samuel</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Gilbert</foaf:surname>
+                        <foaf:givenName>Martin S.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Gilles</foaf:surname>
+                        <foaf:givenName>Frank</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Gohlke</foaf:surname>
+                        <foaf:givenName>Martin</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Grossard</foaf:surname>
+                        <foaf:givenName>Nicolas</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Guenther</foaf:surname>
+                        <foaf:givenName>Burghardt</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Hager</foaf:surname>
+                        <foaf:givenName>Philipp</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Hauden</foaf:surname>
+                        <foaf:givenName>Jerome</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Heine</foaf:surname>
+                        <foaf:givenName>Frank</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Heinzel</foaf:surname>
+                        <foaf:givenName>Gerhard</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Herding</foaf:surname>
+                        <foaf:givenName>Mark</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Hinz</foaf:surname>
+                        <foaf:givenName>Martin</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Howell</foaf:surname>
+                        <foaf:givenName>James</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Katsumura</foaf:surname>
+                        <foaf:givenName>Mark</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kaufer</foaf:surname>
+                        <foaf:givenName>Marina</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Klipstein</foaf:surname>
+                        <foaf:givenName>William</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Koch</foaf:surname>
+                        <foaf:givenName>Alexander</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kruger</foaf:surname>
+                        <foaf:givenName>Micah</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Larsen</foaf:surname>
+                        <foaf:givenName>Kameron</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Lebeda</foaf:surname>
+                        <foaf:givenName>Anton</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Lebeda</foaf:surname>
+                        <foaf:givenName>Arnold</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Leikert</foaf:surname>
+                        <foaf:givenName>Thomas</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Liebe</foaf:surname>
+                        <foaf:givenName>Carl Christian</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Liu</foaf:surname>
+                        <foaf:givenName>Jehhal</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Lobmeyer</foaf:surname>
+                        <foaf:givenName>Lynette</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Mahrdt</foaf:surname>
+                        <foaf:givenName>Christoph</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Mangoldt</foaf:surname>
+                        <foaf:givenName>Thomas</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>McKenzie</foaf:surname>
+                        <foaf:givenName>Kirk</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Misfeldt</foaf:surname>
+                        <foaf:givenName>Malte</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Morton</foaf:surname>
+                        <foaf:givenName>Phillip R.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Müller</foaf:surname>
+                        <foaf:givenName>Vitali</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Murray</foaf:surname>
+                        <foaf:givenName>Alexander T.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Nguyen</foaf:surname>
+                        <foaf:givenName>Don J.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Nicklaus</foaf:surname>
+                        <foaf:givenName>Kolja</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Pierce</foaf:surname>
+                        <foaf:givenName>Robert</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ravich</foaf:surname>
+                        <foaf:givenName>Joshua A.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Reavis</foaf:surname>
+                        <foaf:givenName>Gretchen</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Reiche</foaf:surname>
+                        <foaf:givenName>Jens</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sanjuan</foaf:surname>
+                        <foaf:givenName>Josep</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Schütze</foaf:surname>
+                        <foaf:givenName>Daniel</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Seiter</foaf:surname>
+                        <foaf:givenName>Christoph</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Shaddock</foaf:surname>
+                        <foaf:givenName>Daniel</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sheard</foaf:surname>
+                        <foaf:givenName>Benjamin</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sileo</foaf:surname>
+                        <foaf:givenName>Michael</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Spero</foaf:surname>
+                        <foaf:givenName>Robert</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Spiers</foaf:surname>
+                        <foaf:givenName>Gary</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Stede</foaf:surname>
+                        <foaf:givenName>Gunnar</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Stephens</foaf:surname>
+                        <foaf:givenName>Michelle</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sutton</foaf:surname>
+                        <foaf:givenName>Andrew</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Trinh</foaf:surname>
+                        <foaf:givenName>Joseph</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Voss</foaf:surname>
+                        <foaf:givenName>Kai</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wang</foaf:surname>
+                        <foaf:givenName>Duo</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wang</foaf:surname>
+                        <foaf:givenName>Rabi T.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ware</foaf:surname>
+                        <foaf:givenName>Brent</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wegener</foaf:surname>
+                        <foaf:givenName>Henry</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Windisch</foaf:surname>
+                        <foaf:givenName>Steve</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Woodruff</foaf:surname>
+                        <foaf:givenName>Christopher</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Zender</foaf:surname>
+                        <foaf:givenName>Bernd</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Zimmermann</foaf:surname>
+                        <foaf:givenName>Marcus</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_58"/>
+        <dc:title>In-Orbit Performance of the GRACE Follow-on Laser Ranging Interferometer</dc:title>
+        <dc:date>2019-7-19</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://link.aps.org/doi/10.1103/PhysRevLett.123.031101</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2020-11-23 07:13:44</dcterms:dateSubmitted>
+        <bib:pages>031101</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:0031-9007,%201079-7114">
+        <prism:volume>123</prism:volume>
+        <dc:title>Physical Review Letters</dc:title>
+        <dc:identifier>DOI 10.1103/PhysRevLett.123.031101</dc:identifier>
+        <prism:number>3</prism:number>
+        <dcterms:alternative>Phys. Rev. Lett.</dcterms:alternative>
+        <dc:identifier>ISSN 0031-9007, 1079-7114</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_58">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="D:\Downloads\PhysRevLett.123.031101.pdf"/>
+        <dc:title>PhysRevLett.123.031101.pdf</dc:title>
+        <z:linkMode>2</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+</rdf:RDF>

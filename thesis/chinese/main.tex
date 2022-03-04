@@ -1,0 +1,87 @@
+\documentclass[hyperref]{ctexart}
+\usepackage[left=2.50cm, right=2.50cm, top=2.50cm, bottom=2.50cm]{geometry} %页边距
+\usepackage{helvet}
+\usepackage{amsmath, amsfonts, amssymb} % 数学公式、符号
+\usepackage[english]{babel}
+\usepackage{graphicx}   % 图片
+\usepackage{url}        % 超链接
+\usepackage{bm}         % 加粗方程字体
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\renewcommand{\algorithmicrequire}{ \textbf{Input:}}       
+\renewcommand{\algorithmicensure}{ \textbf{Initialize:}} 
+\renewcommand{\algorithmicreturn}{ \textbf{Output:}}     
+\usepackage{fancyhdr} %设置页眉、页脚
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setcounter{section}{-1}
+\usepackage{hyperref} %bookmarks
+\hypersetup{colorlinks, bookmarks, unicode} %unicode
+\usepackage{multicol}
+\bibliographystyle{IEEEtran.bst}
+
+%------------------------------文章开始--------------------------------%
+% 标题
+\title{\textbf{GRACE Follow-On微波数据1A级到1B级处理研究}}
+
+% 作者
+
+\author{
+    {\textbf{李浩思}\textsuperscript{1}, xxxxx\textsuperscript{1,2}}\\
+    1.长安大学地球物理系
+}
+
+% 时间（日期）
+\date{(Dated: \today)}
+
+\begin{document}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % 摘要及关键词
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \maketitle
+        \noindent{\bf Abstract: }This is abstract.This is abstract.This is abstract.This is abstract.This is abstract.This is abstract.This is abstract.This is abstract.This is abstract.This is abstract.This is abstract.This is abstract.This is abstract.This is abstract.This is abstract.This is abstract.This is abstract.This is abstract.\\
+        
+        \noindent{\bf Keywords: }Keyword1; Keyword2; Keyword3;...
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % 正文开始
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{multicols}{2}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % 概述
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{引言}
+    GRACE Follow-On双星计划作为GRACE卫星计划的延续，开创性采用了星载激光干涉仪测量星间距与星间变率。
+    星载激光干涉测距仪由美德两国联合研制，成功地证明了两相距甚远的航天器间实现激光干涉测距的可行性，并将推动空间重力探测任务进入下一个精度水平。
+    \subsection{title}
+    This is introduction.This is introduction.This is introduction.This is introduction.This is introduction.This is introduction.
+    \subsubsection{title}
+    This is introduction.This is introduction.This is introduction.This is introduction.This is introduction.This is introduction.
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % 正文
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{星载双单程测距系统}
+    GRACE Follow-On采用了双单程K波段测距系统来进行精确星间相位测量,其精度达到$10^{-4}$周期\cite{kornfeldGRACEFOGravityRecovery2019}。该系统通过组合双星的相位测量值来抵消USO(ultra-stable oscillator，超稳振荡器)不稳定性的影响。通过以上过程就能得出LLSST(low-low satellite-to-satellite tracking，低低卫卫跟踪测量)测量的两个最重要观测量——星间距(range)和星间变率(range-rate)。
+    \noindent Equations: 
+    \begin{equation}
+        E=mc^2
+    \end{equation}
+    \begin{equation}
+        H\psi=E\psi
+    \end{equation}\\
+    $\partial\partial=0$, and
+    $$\iint_S \vec{F}\cdot \vec{n}d\sigma=\iiint \nabla\times\vec{F}dV$$
+    \section{Conclusion}
+    This is conclusion. This is conclusion. This is conclusion. This is conclusion. This is conclusion. This is conclusion. This is conclusion. This is conclusion. This is conclusion.This is conclusion.
+    \section*{Acknowledgments}
+        These are acknowledgments. These are acknowledgments. These are acknowledgments. These are acknowledgments. These are acknowledgments. These are acknowledgments.
+    \begin{thebibliography}{100}%此处数字为最多可添加的参考文献数量
+        \bibliography{bib.bib}
+    \end{thebibliography}
+    \end{multicols}
+\end{document}

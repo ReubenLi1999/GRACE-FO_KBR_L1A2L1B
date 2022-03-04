@@ -173,7 +173,7 @@ contains
         !>------------------------------------------------------------------------------------------
         !> assign the double differenced one-way range file properties
         !>------------------------------------------------------------------------------------------
-        dd_file%name = '..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//DDR1A_'//trim(date)//'_Y_04.txt'
+        dd_file%name = '..//..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//DDR1A_'//trim(date)//'_Y_04.txt'
         dd_file%unit = 712
         !>------------------------------------------------------------------------------------------
         if (.not. present(tofile)) tofile = .false.
@@ -306,7 +306,7 @@ contains
 
         !> -----------------------------------------------------------------------------------------
         !> assign shadow file properties
-        shadow_file%name = '..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//SHA1A_'//trim(date)//'_'//id//'_04.txt'
+        shadow_file%name = '..//..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//SHA1A_'//trim(date)//'_'//id//'_04.txt'
         shadow_file%unit = 350
         !> -----------------------------------------------------------------------------------------
 
@@ -380,7 +380,7 @@ contains
         type(io_file)                                   :: o_crn
         integer(ip)                                     :: i, ios
 
-        o_crn%name = '..//output//KBR1B_'//trim(date)//'_Y_03.txt'
+        o_crn%name = '..//..//output//KBR1B_'//trim(date)//'_Y_03.txt'
         o_crn%unit = 652
         
         open(unit=o_crn%unit, file=o_crn%name, iostat=ios, action="write")
@@ -401,7 +401,7 @@ contains
         real(wp), ALLOCATABLE                           :: crn_coeffs(:, :)
         type(io_file)                                   :: crn
 
-        crn%name = '..//output//crn_filter_coeffs.txt'
+        crn%name = '..//..//output//crn_filter_coeffs.txt'
         crn%unit = 434
         crn%nrow = crn%get_file_n()
         crn%nheader = 0
@@ -488,7 +488,7 @@ contains
 
         dowr = 16.0_wp / 7.0_wp * dowr_ka - 9.0_wp / 7.0_wp * dowr_k
 
-        dowr_file%name = '..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//DOWR1A_'//trim(date)//'_Y_04.txt'
+        dowr_file%name = '..//..//..//..//gracefo_dataset//gracefo_1A_'//trim(date)//'_RL04.ascii.noLRI//DOWR1A_'//trim(date)//'_Y_04.txt'
         dowr_file%unit = 234
 
         !<------------------------------------------------------------------------------------------
@@ -504,7 +504,7 @@ contains
         if ( ios /= 0 ) stop "Error closing file unit dowr_file%unit"
         !<------------------------------------------------------------------------------------------
 
-        iono_file%name = '..//output//IONO1A_'//trim(date)//'_Y_03.txt'
+        iono_file%name = '..//..//output//IONO1A_'//trim(date)//'_Y_03.txt'
         iono_file%unit = 512
         OPEN(unit=iono_file%unit, file=iono_file%name, iostat=ios, action='write')
         if ( ios /= 0 ) stop "Error opening ionosphere correction file"
@@ -810,7 +810,7 @@ contains
         nrows = 0
 
         do
-            read(me%unit, *, ioStat=ierr) cDummy
+            read(me%unit, *, ioStat=ierr) 
             if(ierr /= 0) exit
             nrows = nrows + 1
         end do

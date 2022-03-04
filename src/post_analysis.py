@@ -5,14 +5,8 @@ from scipy.signal import welch, kaiserord, firwin, filtfilt
 import glob
 import dask.dataframe as dd
 import platform
-import pylab
 from scipy.stats import pearsonr, norm
-import matplotlib.font_manager as fm
 from matplotlib import font_manager
-from mpl_toolkits.axes_grid1.inset_locator import mark_inset
-from mpl_toolkits.axes_grid1.inset_locator import inset_axes
-from mpl_toolkits.axes_grid1.inset_locator import zoomed_inset_axes
-from matplotlib.patches import ConnectionPatch
 
 
 def brush_1_0(xy):
@@ -27,24 +21,8 @@ def iono_corr():
     plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
 
     # read in data
-    # iono_corr = np.loadtxt(fname='..//output//IONO1A_2018-12-31_Y_03.txt',
-    #                        dtype=np.longdouble,
-    #                        skiprows=1)
-    dd_range = np.loadtxt(
-        '..//..//..//gracefo_dataset//gracefo_1A_2018-12-01_RL04.ascii.noLRI//DDR1A_2018-12-01_Y_04.txt',
-        dtype=np.longdouble,
-        skiprows=1,
-        max_rows=863998)
-    # dowr_k = np.loadtxt(
-    #     fname='..//..//..//gracefo_dataset//gracefo_1A_2018-12-31_RL04.ascii.noLRI//DOWR1A_2018-12-31_Y_04.txt',
-    #     usecols=1,
-    #     dtype=np.longdouble)
-    # dowr_ka = np.loadtxt(
-    #     fname='..//..//..//gracefo_dataset//gracefo_1A_2018-12-31_RL04.ascii.noLRI//DOWR1A_2018-12-31_Y_04.txt',
-    #     usecols=2,
-    #     dtype=np.longdouble)
     dd_kbr1b = dd.read_csv(
-        urlpath='..//..//..//gracefo_dataset//gracefo_1B_2018-12-31_RL04.ascii.noLRI//KBR1B_2018-12-31_Y_04.txt',
+        urlpath='..//..//..//gracefo_dataset//gracefo_1B_2018-12-22_RL04.ascii.noLRI//KBR1B_2018-12-22_Y_04.txt',
         engine='c',
         header=None,
         sep='\s+',
@@ -56,155 +34,79 @@ def iono_corr():
             'lighttime_accl', 'ant_centr_corr', 'ant_centr_rate',
             'ant_centr_accl', 'k_a_snr', 'ka_a_snr', 'k_b_snr', 'ka_b_snr', 'qualflg'
         ])
-    # shadow_c = np.loadtxt(
-    #     fname='..//..//..//gracefo_dataset//gracefo_1A_2018-12-31_RL04.ascii.noLRI//SHA1A_2018-12-31_C_04.txt')
-    # shadow_d = np.loadtxt(
-    #     fname='..//..//..//gracefo_dataset//gracefo_1A_2018-12-31_RL04.ascii.noLRI//SHA1A_2018-12-31_D_04.txt')
-    # thr_c = dd.read_csv(
-    #     urlpath='..//..//..//gracefo_dataset//gracefo_1B_2018-12-31_RL04.ascii.noLRI//THR1B_2018-12-31_C_04.txt',
-    #     engine='c',
-    #     header=None,
-    #     names=[
-    #         'rcvtime_intg', 'rcvtime_frac', 'time_ref', 'GRACEFO_id', 'thrust_count_att_ctrl_1_1',
-    #         'thrust_count_att_ctrl_1_2',
-    #         'thrust_count_att_ctrl_1_3', 'thrust_count_att_ctrl_1_4', 'thrust_count_att_ctrl_1_5',
-    #         'thrust_count_att_ctrl_1_6',
-    #         'thrust_count_att_ctrl_2_1', 'thrust_count_att_ctrl_2_2', 'thrust_count_att_ctrl_2_3',
-    #         'thrust_count_att_ctrl_2_4', 'thrust_count_att_ctrl_2_5', 'thrust_count_att_ctrl_2_6',
-    #         'thrust_count_undef_1', 'thrust_count_undef_2', 'on_time_att_ctrl_1_1', 'on_time_att_ctrl_1_2',
-    #         'on_time_att_ctrl_1_3',
-    #         'on_time_att_ctrl_1_4', 'on_time_att_ctrl_1_5', 'on_time_att_ctrl_1_6',
-    #         'on_time_att_ctrl_2_1', 'on_time_att_ctrl_2_2', 'on_time_att_ctrl_2_3',
-    #         'on_time_att_ctrl_2_4', 'on_time_att_ctrl_2_5', 'on_time_att_ctrl_2_6',
-    #         'on_time_orb_ctrl_1', 'on_time_orb_ctrl_2',
-    #         'accum_dur_att_ctrl', 'accum_dur_undef_1', 'accum_dur_undef_2', 'accum_dur_undef_3', 'accum_dur_undef_4',
-    #         'accum_dur_undef_5', 'accum_dur_undef_6', 'accum_dur_undef_7', 'accum_dur_undef_8', 'accum_dur_undef_9',
-    #         'accum_dur_undef_10', 'accum_dur_undef_11', 'accum_dur_orb_ctrl', 'accum_dur_undef_12', 'qualflg'
-    #     ],
-    #     skiprows=284,
-    #     sep='\s+'
-    # )
-    # thr_d = dd.read_csv(
-    #     urlpath='..//..//..//gracefo_dataset//gracefo_1B_2018-12-31_RL04.ascii.noLRI//THR1B_2018-12-31_D_04.txt',
-    #     engine='c',
-    #     header=None,
-    #     names=[
-    #         'rcvtime_intg', 'rcvtime_frac', 'time_ref', 'GRACEFO_id', 'thrust_count_att_ctrl_1_1',
-    #         'thrust_count_att_ctrl_1_2',
-    #         'thrust_count_att_ctrl_1_3', 'thrust_count_att_ctrl_1_4', 'thrust_count_att_ctrl_1_5',
-    #         'thrust_count_att_ctrl_1_6',
-    #         'thrust_count_att_ctrl_2_1', 'thrust_count_att_ctrl_2_2', 'thrust_count_att_ctrl_2_3',
-    #         'thrust_count_att_ctrl_2_4', 'thrust_count_att_ctrl_2_5', 'thrust_count_att_ctrl_2_6',
-    #         'thrust_count_undef_1', 'thrust_count_undef_2', 'on_time_att_ctrl_1_1', 'on_time_att_ctrl_1_2',
-    #         'on_time_att_ctrl_1_3',
-    #         'on_time_att_ctrl_1_4', 'on_time_att_ctrl_1_5', 'on_time_att_ctrl_1_6',
-    #         'on_time_att_ctrl_2_1', 'on_time_att_ctrl_2_2', 'on_time_att_ctrl_2_3',
-    #         'on_time_att_ctrl_2_4', 'on_time_att_ctrl_2_5', 'on_time_att_ctrl_2_6',
-    #         'on_time_orb_ctrl_1', 'on_time_orb_ctrl_2',
-    #         'accum_dur_att_ctrl', 'accum_dur_undef_1', 'accum_dur_undef_2', 'accum_dur_undef_3', 'accum_dur_undef_4',
-    #         'accum_dur_undef_5', 'accum_dur_undef_6', 'accum_dur_undef_7', 'accum_dur_undef_8', 'accum_dur_undef_9',
-    #         'accum_dur_undef_10', 'accum_dur_undef_11', 'accum_dur_orb_ctrl', 'accum_dur_undef_12', 'qualflg'
-    #     ],
-    #     skiprows=284,
-    #     sep='\s+'
-    # )
-    # acc_c = dd.read_csv(
-    #     urlpath='..//..//..//gracefo_dataset//gracefo_1A_2018-12-31_RL04.ascii.noLRI//ACT1A_2018-12-31_C_04.txt',
-    #     engine='c',
-    #     header=None,
-    #     names=[
-    #         'rcvtime_intg', 'rcvtime_frac', 'time_ref', 'gracefo_id', 'qualflg',
-    #         'prod_flag', 'lin_accl_x', 'lin_accl_y', 'lin_accl_z', 'ang_accl_x',
-    #         'ang_accl_y', 'ang_accl_z', 'vxdd'
-    #     ],
-    #     skiprows=340,
-    #     sep='\s+')
-    # acc_d = dd.read_csv(
-    #     urlpath=
-    #     '..//..//..//gracefo_dataset//gracefo_1A_2018-12-31_RL04.ascii.noLRI//ACT1A_2018-12-31_D_04.txt',
-    #     engine='c',
-    #     header=None,
-    #     names=[
-    #         'rcvtime_intg', 'rcvtime_frac', 'time_ref', 'gracefo_id',
-    #         'qualflg', 'prod_flag', 'lin_accl_x', 'lin_accl_y', 'lin_accl_z',
-    #         'ang_accl_x', 'ang_accl_y', 'ang_accl_z', 'vxdd'
-    #     ],
-    #     skiprows=332,
-    #     sep='\s+')
-    # dd_kbr1a_c = dd.read_csv(urlpath='..//..//..//gracefo_dataset//gracefo_1A_2018-12-31_RL04.ascii.noLRI//KBR1A_2018-12-31_C_04.txt',
-    #                          engine='c',
-    #                          header=None,
-    #                          names=[
-    #                              'time_intg', 'time_frac', 'gracefo_id',
-    #                              'prn_id', 'ant_id', 'prod_flag', 'qualflg',
-    #                              'k_phase', 'ka_phase', 'k_snr', 'ka_snr'
-    #                          ],
-    #                          skiprows=250,
-    #                          sep='\s+',)
-    # filter
-    # iono_kbr1b = dd_kbr1b.iono_corr.compute().to_numpy()
-    # non_filtered = dowr_k * 9 / 7 - dowr_ka * 16 / 7
-    # iono_corr_hf = iono_corr - kaiser(iono_corr, 5., fcut)
-    # iono_corr_hf = dowr_k - kaiser(dowr_k, 5., fcut)
+    shadow_c = np.loadtxt(
+        fname='..//..//..//gracefo_dataset//gracefo_1A_2018-12-22_RL04.ascii.noLRI//SHA1A_2018-12-22_C_04.txt')
+    shadow_d = np.loadtxt(
+        fname='..//..//..//gracefo_dataset//gracefo_1A_2018-12-22_RL04.ascii.noLRI//SHA1A_2018-12-22_D_04.txt')
+
+    dd_kbr1b_1 = dd.read_csv(
+        urlpath='..//..//..//gracefo_dataset//gracefo_1B_2019-06-22_RL04.ascii.noLRI//KBR1B_2019-06-22_Y_04.txt',
+        engine='c',
+        header=None,
+        sep='\s+',
+        skiprows=162,
+        dtype=np.longdouble,
+        names=[
+            'gps_time', 'biased_range', 'range_rate', 'range_accl',
+            'iono_corr', 'lighttime_err', 'lighttime_rate',
+            'lighttime_accl', 'ant_centr_corr', 'ant_centr_rate',
+            'ant_centr_accl', 'k_a_snr', 'ka_a_snr', 'k_b_snr', 'ka_b_snr', 'qualflg'
+        ])
+    shadow_c_1 = np.loadtxt(
+        fname='..//..//..//gracefo_dataset//gracefo_1A_2019-06-22_RL04.ascii.noLRI//SHA1A_2019-06-22_C_04.txt')
+    shadow_d_1 = np.loadtxt(
+        fname='..//..//..//gracefo_dataset//gracefo_1A_2019-06-22_RL04.ascii.noLRI//SHA1A_2019-06-22_D_04.txt')
+
     iono_corr_hf = dd_kbr1b['iono_corr'].compute().to_numpy() - kaiser(dd_kbr1b['iono_corr'].compute().to_numpy(), 0.1, fcut)
     iono_corr_hf = -(iono_corr_hf * 32e9**2) / 40.3
-    np.savetxt(fname='..//output//tec_2018-12-31.txt', X=iono_corr_hf)
-    # iono_corr_k = iono_corr_hf
-    # iono_corr_hf = dowr_ka - kaiser(dowr_ka, 5., fcut)
-    # iono_corr_ka = iono_corr_hf
-    # iono_corr_hf = dd_range - kaiser(dd_range, 5., fcut)
-    # iono_corr_hf = non_filtered - kaiser(non_filtered, 5., fcut)
 
-    # temp = iono_corr_hf[4000: 860000]
-    # temp = temp[0::10]
-    # power_hf_0 = np.sum(np.abs(temp[shadow_c[400: 86000, 1] == 0])) / temp[shadow_c[400: 86000, 1] == 0].__len__()
-    # power_hf_1 = np.sum(np.abs(temp[shadow_c[400: 86000, 1] == 1])) / temp[shadow_c[400: 86000, 1] == 1].__len__()
-    # var_hf_0 = np.var(temp[shadow_c[400: 86000, 1] == 0])
-    # var_hf_1 = np.var(temp[shadow_c[400: 86000, 1] == 1])
-    # print('power:')
-    # print(power_hf_0, power_hf_1)
-    # print('variance:')
-    # print(var_hf_0, var_hf_1)
+    iono_corr_hf_1 = dd_kbr1b_1['iono_corr'].compute().to_numpy() - kaiser(dd_kbr1b_1['iono_corr'].compute().to_numpy(), 0.1, fcut)
+    iono_corr_hf_1 = -(iono_corr_hf_1 * 32e9**2) / 40.3
 
-    # freq_corr, psd_corr = welch(iono_corr,
-    #                             10., ('kaiser', 30.),
-    #                             iono_corr.__len__(),
-    #                             scaling='density')
-    freq_ddra, psd_ddra = welch(dd_range,
-                                10., ('kaiser', 30.),
-                                dd_range.__len__(),
-                                scaling='density')
-    # freq_k1ac, psd_k1ac = welch(dd_range,
-    #                             10., ('kaiser', 30.),
-    #                             dd_kbr1a_c.__len__(),
-    #                             scaling='density')
-    # brush_1_0(shadow_c)
+    plt.style.use(['science', 'no-latex', 'high-vis'])
+    fig, ax = plt.subplots(1, 2, figsize=(20, 6))
+    time_span = np.linspace(0, 86400, iono_corr_hf.__len__())
+    ax[0].plot(time_span, iono_corr_hf, linewidth=1)
+    ax[0].fill_between(shadow_c[:, 0] - shadow_c[0, 0], 0, 1, where=shadow_c[:, 1] == 0,
+                    color='grey', alpha=0.5, transform=ax[0].get_xaxis_transform())
+    ax[0].fill_between(shadow_d[:, 0] - shadow_d[0, 0], 0, 1, where=shadow_d[:, 1] == 0,
+                    color='grey', alpha=0.5, transform=ax[0].get_xaxis_transform())
+    ax[0].set_ylim([-0.4e15, 0.4e15])
+    ax[0].set_xlim([500, 85500])
+    ax[0].ticklabel_format(style='sci', axis='y', scilimits=(-5, 2))
+    ax[0].set_xlabel(u"自2018年12月22日00:00:00开始GPS时 [s]", fontsize=20, fontproperties=fontP)
+    ax[0].set_ylabel(r'0.04-0.08 Hz频段的水平电子总数 [TECU]', fontsize=20, fontproperties=fontP)
+    ax[0].yaxis.get_offset_text().set_fontsize(20)
+    ax[0].spines['top'].set_linewidth(2)
+    ax[0].spines['bottom'].set_linewidth(2)
+    ax[0].spines['left'].set_linewidth(2)
+    ax[0].spines['right'].set_linewidth(2)
+    ax[0].text(5000, -3.5e14, "(a)", fontsize=15)
+    # ax[0].legend(fontsize=20, loc='best', frameon=False)
+    ax[0].tick_params(labelsize=25, width=2.9)
 
-    # norm
-    # mu, std = norm.fit(iono_corr_hf)
+    ax[1].plot(time_span, iono_corr_hf_1, linewidth=1)
+    ax[1].fill_between(shadow_c_1[:, 0] - shadow_c_1[0, 0], 0, 1, where=shadow_c_1[:, 1] == 0,
+                    color='grey', alpha=0.5, transform=ax[1].get_xaxis_transform())
+    ax[1].fill_between(shadow_d_1[:, 0] - shadow_d_1[0, 0], 0, 1, where=shadow_d_1[:, 1] == 0,
+                    color='grey', alpha=0.5, transform=ax[1].get_xaxis_transform())
+    ax[1].set_ylim([-3e14, 3e14])
+    ax[1].set_xlim([500, 85500])
+    ax[1].ticklabel_format(style='sci', axis='y', scilimits=(-5, 2))
+    ax[1].set_xlabel(u"自2019年6月22日00:00:00开始GPS时 [s]", fontsize=20, fontproperties=fontP)
+    ax[1].set_ylabel(r'0.04-0.08 Hz频段的水平电子总数 [TECU]', fontsize=20, fontproperties=fontP)
+    ax[1].yaxis.get_offset_text().set_fontsize(20)
+    ax[1].spines['top'].set_linewidth(2)
+    ax[1].spines['bottom'].set_linewidth(2)
+    ax[1].spines['left'].set_linewidth(2)
+    ax[1].spines['right'].set_linewidth(2)
+    ax[1].text(3000, -2.5e14, "(b)", fontsize=15)
+    # ax[1].legend(fontsize=20, loc='best', frameon=False)
+    ax[1].tick_params(labelsize=25, width=2.9)
+    plt.tight_layout()
+    plt.show()
+    fig.savefig("..//images//TEC_s_w.png", dpi=300)
 
-    # plt.style.use(['science', 'no-latex', 'high-vis'])
-    # fig, ax = plt.subplots(figsize=(50, 25))
-    # time_span = np.linspace(0, 86400, iono_corr_hf.__len__())
-    # ax.plot(time_span, iono_corr_hf, linewidth=1)
-    # # ax.scatter(time_span[outlier_index], iono_corr_hf[outlier_index], color='red')
-    # # ax.fill_between(shadow_c[:, 0] - shadow_c[0, 0], 0, 1, where=shadow_c[:, 1] == 0,
-    # #                 color='grey', alpha=0.5, transform=ax.get_xaxis_transform())
-    # # ax.fill_between(shadow_d[:, 0] - shadow_d[0, 0], 0, 1, where=shadow_d[:, 1] == 0,
-    # #                 color='grey', alpha=0.5, transform=ax.get_xaxis_transform())
-    # ax.set_ylim([-1.5e15, 2e15])
-    # ax.set_xlim([500, 85500])
-    # ax.ticklabel_format(style='sci', axis='y', scilimits=(-5, 2))
-    # ax.set_xlabel(u"自2019年5月1日00:00:00开始GPS时 [s]", fontsize=20, fontproperties=fontP)
-    # ax.set_ylabel(r'0.04-0.08 Hz频段的水平电子总数 [TECU]', fontsize=20, fontproperties=fontP)
-    # ax.yaxis.get_offset_text().set_fontsize(24)
-    # ax.spines['top'].set_linewidth(2)
-    # ax.spines['bottom'].set_linewidth(2)
-    # ax.spines['left'].set_linewidth(2)
-    # ax.spines['right'].set_linewidth(2)
-    # # ax.legend(fontsize=20, loc='best', frameon=False)
-    # ax.tick_params(labelsize=25, width=2.9)
-# 
     # axins1 = ax.inset_axes((0.55, 0.75, 0.2, 0.2))
     # axins1.tick_params(labelsize=15, width=1)
     # axins1.yaxis.get_offset_text().set_fontsize(14)
@@ -262,10 +164,6 @@ def iono_corr():
     # axins2.plot(time_span[zone_left: zone_right], iono_corr_hf[zone_left: zone_right])
 # 
     # plt.show()
-
-
-
-
 
     freq_k1ac, psd_k1ac = welch(iono_corr_hf[500: 85500],
                                 10., ('kaiser', 30.),
@@ -405,19 +303,19 @@ def iono_corr():
     # ax.tick_params(labelsize=25, width=2.9)
     # ax.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
     #
-    fig, ax = plt.subplots(figsize=(20, 10))
-    ax.loglog(freq_ddra, np.sqrt(psd_ddra), linewidth=2, label='double differenced range')
-    ax.semilogx(np.linspace(0.0001, 5, 10000),
-                2.62 *
-                np.sqrt(1 + (0.003 / np.linspace(0.0001, 5, 10000)**2)) * 1e-6,
-                label='stochastic error requirement')
-    ax.set_xlabel(r'$Frequency [Hz]$', fontsize=20)
-    ax.set_ylabel(r'$ASD [m/\sqrt{Hz}]$', fontsize=20)
-    ax.yaxis.get_offset_text().set_fontsize(24)
-    ax.legend(fontsize=20, loc='best', frameon=False)
-    ax.tick_params(labelsize=25, width=2.9)
-    ax.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
-    plt.show()
+    # fig, ax = plt.subplots(figsize=(20, 10))
+    # ax.loglog(freq_ddra, np.sqrt(psd_ddra), linewidth=2, label='double differenced range')
+    # ax.semilogx(np.linspace(0.0001, 5, 10000),
+    #             2.62 *
+    #             np.sqrt(1 + (0.003 / np.linspace(0.0001, 5, 10000)**2)) * 1e-6,
+    #             label='stochastic error requirement')
+    # ax.set_xlabel(r'$Frequency [Hz]$', fontsize=20)
+    # ax.set_ylabel(r'$ASD [m/\sqrt{Hz}]$', fontsize=20)
+    # ax.yaxis.get_offset_text().set_fontsize(24)
+    # ax.legend(fontsize=20, loc='best', frameon=False)
+    # ax.tick_params(labelsize=25, width=2.9)
+    # ax.grid(True, which='both', ls='dashed', color='0.5', linewidth=0.6)
+    # plt.show()
 
     # fig, ax = plt.subplots(figsize=(20, 10))
     # ax.hist(iono_corr_hf,

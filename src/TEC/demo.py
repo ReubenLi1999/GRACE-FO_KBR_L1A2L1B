@@ -1,10 +1,9 @@
 import numpy as np
 import pandas as pd
-import plotly.graph_objects as go
 import time
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
-from glob import glob
+from glob import glob 
 from os import path
 from astropy import coordinates as coord
 from astropy import units as u
@@ -13,11 +12,11 @@ from astropy.coordinates import Angle
 import cartopy.crs as crs
 import cartopy.feature as cfeature
 import matplotlib.tri as tri
-import plotly.graph_objects as go
 from scipy.signal import welch, kaiserord, firwin, filtfilt
 from scipy.fft import fft, fftfreq
 from pyquaternion import Quaternion
-from plotly.subplots import make_subplots
+from matplotlib import font_manager
+# from distributed import Client
 
 
 def file_product4specific_days(start_date, end_date, product_flags, path_dir, subfolder_path_format):
@@ -78,7 +77,7 @@ def xyz2latlon(date, secofday, xyz):
     ground_lat = np.asarray([])
     ground_lon = np.asarray([])
     secofday = secofday - secofday.min()
-    secofday = secofday.astype(np.int)
+    secofday = secofday.astype(np.int64)
     for index, sec in enumerate(secofday):
         now = Time(time_stamps[index])
         cartrep = coord.CartesianRepresentation(
@@ -122,10 +121,7 @@ def map_cntr(lat, lon, data, lat_min=-90., lat_max=90., lon_min=-180., lon_max=1
     plt.show()
 
 
-def main():
-    # client = Client()
-    start_date = '2019-01-01'
-    end_date = '2019-01-07'
+def loaddata(start_date, end_date):
 
     files_20181201220181204 = file_product4specific_days(
         start_date, end_date, ['KBR1B', 'GNV1B'], r'..//..//..//..//gracefo_dataset', r"gracefo_1B_%Y-%m-%d_RL04.ascii.noLRI")
@@ -168,34 +164,12 @@ def main():
 
     # ionosphere correction to TEC
     f_ka = 32e9  # unit in Hz
-    # kbr1b_x['TEC'] = -kbr1b_x['iono_corr'] / 40.3 * f_ka**2
-    # kbr1b_x['Ne'] = kbr1b_x['TEC'] / kbr1b_x.biased_range
-    kbr1b_x["iono_corr_hf"] = kbr1b_x['iono_corr'].to_numpy(
-    ) - kaiser(kbr1b_x['iono_corr'].to_numpy(), 0.1, 0.035)
+    kbr1b_x['TEC'] = -kbr1b_x['iono_corr'] / 40.3 * f_ka**2
+    kbr1b_x["iono_corr_hf"] = kbr1b_x['TEC'].to_numpy(
+    ) - kaiser(kbr1b_x['TEC'].to_numpy(), 0.1, 0.035)
     kbr1b_x["iono_corr_hf_abs"] = np.abs(kbr1b_x.iono_corr_hf.to_numpy())
 
-    kbr1b_x = kbr1b_x[kbr1b_x.iono_corr_hf_abs > np.std(kbr1b_x.iono_corr_hf.to_numpy() * 2)]
-
-    fig = plt.figure(figsize=(10,8))
-
-    ax = fig.add_subplot(1, 1, 1, projection=crs.PlateCarree())
-
-    ax.set_global()
-
-    ax.add_feature(cfeature.COASTLINE)
-    ax.add_feature(cfeature.BORDERS)
-    gl = ax.gridlines(draw_labels=True, linewidth=2, linestyle="--")
-    gl.xlabel_style = {'size': "20"}
-    gl.ylabel_style = {'size': "20"}
-
-    plt.scatter(x=kbr1b_x.lon, y=kbr1b_x.lat,
-                c=kbr1b_x.iono_corr_hf,
-                cmap='jet',
-                s=25,
-                alpha=0.9,
-                transform=crs.PlateCarree())
-
-    plt.show()
+    kbr1b_x = kbr1b_x[kbr1b_x.iono_corr_hf_abs > np.std(kbr1b_x.iono_corr_hf.to_numpy()) * 2]
 
     # np.savetxt("iono_corr.txt", kbr1b_x['iono_corr'].to_numpy() - kaiser(kbr1b_x['iono_corr'].to_numpy(), 0.1, 0.035))
 
@@ -212,6 +186,7 @@ def main():
     # ))
     # fig.update_layout(geo_scope='world')
     # fig.show()
+    return kbr1b_x
 
 
 def kaiser(x, fq, cutoff_hz, ripple_db=600.):
@@ -235,6 +210,70 @@ def kaiser(x, fq, cutoff_hz, ripple_db=600.):
     filtered_x = filtfilt(taps, 1.0, x)
 
     return filtered_x
+
+
+def main():
+    # client = Client()
+    fontP = font_manager.FontProperties()
+    fontP.set_family('SimHei')
+    plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
+
+    winter = loaddata("2018-12-19", "2018-12-22")
+    summer = loaddata("2019-06-19", "2019-06-22")
+
+    # plot
+    fig = plt.figure(figsize=(20, 7))
+    # winter
+    ax = fig.add_subplot(1, 2, 1, projection=crs.PlateCarree())
+    ax.set_title(r"2018年12月16日至22日", fontsize=20, fontproperties=fontP)
+    ax.set_global()
+
+    ax.add_feature(cfeature.COASTLINE)
+    ax.add_feature(cfeature.BORDERS)
+    gl = ax.gridlines(draw_labels=True, linewidth=2, linestyle="--")
+    gl.xlabel_style = {'size': "20"}
+    gl.ylabel_style = {'size': "20"}
+    gl.top_labels = False
+    gl.right_labels = False
+
+    plt.scatter(x=winter.lon, y=winter.lat,
+                c=winter.iono_corr_hf,
+                cmap='jet',
+                s=25,
+                alpha=0.9,
+                transform=crs.PlateCarree())
+    ax.text(-165, -80, "(a)", fontsize=20)
+    cbar = plt.colorbar(orientation='horizontal', pad=0.06, aspect=20)
+    cbar.ax.tick_params(labelsize=20)
+    cbar.ax.set_xlabel(r'0.04-0.08Hz分量水平电子数增量', fontsize=20, fontproperties=fontP)
+    cbar.ax.xaxis.get_offset_text().set_fontsize(20)
+    # summer
+    ax = fig.add_subplot(1, 2, 2, projection=crs.PlateCarree())
+    ax.set_title(r"2019年6月22日至30日", fontsize=20, fontproperties=fontP)
+
+    ax.set_global()
+
+    ax.add_feature(cfeature.COASTLINE)
+    ax.add_feature(cfeature.BORDERS)
+    gl = ax.gridlines(draw_labels=True, linewidth=2, linestyle="--")
+    gl.xlabel_style = {'size': "20"}
+    gl.ylabel_style = {'size': "20"}
+    gl.top_labels = False
+    gl.right_labels = False
+
+    plt.scatter(x=summer.lon, y=summer.lat,
+                c=summer.iono_corr_hf,
+                cmap='jet',
+                s=25,
+                alpha=0.9,
+                transform=crs.PlateCarree())
+    ax.text(-165, -80, "(b)", fontsize=20)
+    cbar = plt.colorbar(orientation='horizontal', pad=0.06, aspect=20)
+    cbar.ax.tick_params(labelsize=20)
+    cbar.ax.set_xlabel(r'0.04-0.08Hz分量水平电子数增量', fontsize=20, fontproperties=fontP)
+    cbar.ax.xaxis.get_offset_text().set_fontsize(20)
+    plt.show()
+    plt.savefig("..//..//images//gt_ttt.png", dpi=200)
 
 
 if __name__ == "__main__":

@@ -13,7 +13,6 @@
 # this is a script that preprocessing to procure the required files for the following fortran
 # programmes
 
-from post_analysis import extract_filenames
 import numpy as np
 import dask.dataframe as dd
 import sys
@@ -119,13 +118,14 @@ class IoFile(object):
             # skiprows
             skiprows_dict = {'GNI1B': 148, 'USO1B': 90, 'CLK1B': 118, 'KBR1A': 235}
             # using dask to load data
-            self.data_dict[data_flag] = dd.read_csv(urlpath=self.urlpaths,
-                                                    sep='\s+',
-                                                    engine='c',
-                                                    skiprows=skiprows_dict[data_flag],
-                                                    storage_options=dict(auto_mkdir=False),
-                                                    names=header_dict[data_flag],
-                                                    dtype=dtype_dict[data_flag])
+            self.data_dict[data_flag] = dd.read_csv(
+                urlpath=self.urlpaths,
+                sep='\s+',
+                engine='c',
+                skiprows=skiprows_dict[data_flag],
+                storage_options=dict(auto_mkdir=False),
+                names=header_dict[data_flag],
+                dtype=dtype_dict[data_flag],)
             if data_flag == 'KBR1A':
                 self.gps_time = self.data_dict[
                     data_flag].kbr_time_intg.compute().to_numpy(
@@ -188,7 +188,7 @@ class IoFile(object):
         """
         output_filenames = ''
         if self.urlpaths.__len__() == 1:
-            directory = self.urlpaths[0][0: 72]
+            directory = self.urlpaths[0][0: 70]
             output_filenames = directory + flag + '_' + self.date_time_from + '_' + id + '_05.txt'
         else:
             directory = self.urlpaths[0][0: 58]
@@ -204,7 +204,7 @@ def timer(func):
         ret = func(*args, **kwargs)
         end_time = time.time()
         run_time = end_time - begin_time
-        print(str(func.__name__) + "函数运行时间为" + str(run_time))
+        print(str(func.__name__) + "eclapsed time is " + str(run_time))
         return ret
     return call_func
 
